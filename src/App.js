@@ -1,24 +1,82 @@
-import logo from './logo.svg';
-import './App.css';
+import DropDownMenu from "./components/Header/DropDownMenu";
+import { useState } from "react";
+import Content from "./components/Content/content";
+import Footer from "./components/Footer/footer";
+import Header from "./components/Header/header";
+import Sidebar from "./components/Sidebar/sidebar";
+import Cart from "./components/Cart/cart";
+import ProductPage from "./components/Content/ProductPage/ProductPage";
+import PopUp from "./components/popUp/PopUp";
+import { Route, withRouter } from "react-router-dom";
+import Content_Container from "./containers/Content_Container";
+import Product_Page_Container from "./containers/Product_Page_Container";
+import Sidebar_Container from "./containers/Sidebar_Container";
+import Header_Container from "./containers/Header_Container";
+import Cart_Container from "./containers/Cart_Container";
 
-function App() {
+function App({ theme, isThemToogle, toggleTheme }) {
+  console.log(theme.contentBg);
+
+  const [isOpenMenu, toogleMenu] = useState(false);
+  console.log(isOpenMenu);
+  const [visiblePopup, setVisiblePopup] = useState(false);
+  const [visibleHeadNavContent, setHeaderNavContent] = useState(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className={`row ${theme.contentBg}`} style={{ margin: "0" }}>
+        <Header_Container
+          theme={theme}
+          isThemToogle={isThemToogle}
+          toggleTheme={toggleTheme}
+          toogleMenu={toogleMenu}
+          isOpenMenu={isOpenMenu}
+          setVisiblePopup={setVisiblePopup}
+          visiblePopup={visiblePopup}
+          setHeaderNavContent={setHeaderNavContent}
+          visibleHeadNavContent={visibleHeadNavContent}
+        />
+        <Sidebar_Container setHeaderNavContent={setHeaderNavContent} />
+        <DropDownMenu
+          toogleMenu={toogleMenu}
+          isOpenMenu={isOpenMenu}
+          setVisiblePopup={setVisiblePopup}
+          visiblePopup={visiblePopup}
+        />
+        <div>
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <Content_Container
+                setHeaderNavContent={setHeaderNavContent}
+                visiblePopup={visiblePopup}
+              />
+            )}
+          />
+          <Route
+            path="/sidebar/:prod"
+            render={() => (
+              <Content_Container
+                setHeaderNavContent={setHeaderNavContent}
+                visiblePopup={visiblePopup}
+              />
+            )}
+          />
+          <Route path="/cart" render={() => <Cart_Container />} />
+          <Route
+            path="/bar/:product/:id"
+            render={() => (
+              <Product_Page_Container
+                setHeaderNavContent={setHeaderNavContent}
+              />
+            )}
+          />
+          <PopUp visiblePopup={visiblePopup} />
+        </div>
+      </div>
+      <Footer theme={theme} />
+    </>
   );
 }
 
