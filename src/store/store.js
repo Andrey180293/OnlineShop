@@ -4,8 +4,7 @@ import productReducer from "./reducers/product";
 import themeReducer from "./reducers/theme";
 import filteReducer from "./reducers/filter";
 import cartReducer from "./reducers/cart";
-
-//import thunkMiddleware from "redux-thunk";
+import thunkMiddleware from "redux-thunk";
 
 let reducers = combineReducers({
   product: productReducer,
@@ -13,7 +12,7 @@ let reducers = combineReducers({
   filter: filteReducer,
   cart: cartReducer,
 });
-let store = createStore(reducers, applyMiddleware(logger));
+let store = createStore(reducers, applyMiddleware(logger, thunkMiddleware));
 
 store.subscribe(() => console.log(store.getState()));
 export default store;

@@ -5,13 +5,12 @@ import CardItem from "./CardItem";
 import PopUp from "../popUp/PopUp";
 
 const Content = ({
-  allProducts,
   products,
   setProductPage,
   productIndex,
   addToCart,
+  cartItem,
 }) => {
-  console.log(allProducts.flat());
   return (
     <>
       {" "}
@@ -24,9 +23,15 @@ const Content = ({
       >
         <div className="row">
           {products &&
-            products.flat().map((item) => {
+            products.map((item) => {
               return (
                 <CardItem
+                  cartItem={
+                    cartItem.filter(
+                      (el, i, arr) =>
+                        el.id === item.id && el.category === item.category
+                    )[0]
+                  }
                   addToCart={addToCart}
                   item={item}
                   productIndex={productIndex}

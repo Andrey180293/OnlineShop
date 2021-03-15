@@ -20,6 +20,7 @@ function Header_Container({
   visibleHeadNavContent,
   setProductType,
   productIndex,
+  cartItem,
 }) {
   return (
     <Header
@@ -34,6 +35,7 @@ function Header_Container({
       visiblePopup={visiblePopup}
       setHeaderNavContent={setHeaderNavContent}
       visibleHeadNavContent={visibleHeadNavContent}
+      cartItem={cartItem}
     />
   );
 }
@@ -42,6 +44,7 @@ const mapStateToProps = (state) => {
   return {
     theme: state.theme.theme,
     isThemToogle: state.theme.isThemToogle,
+    cartItem: state.cart.items,
 
     byFilter: state.filter.byFilter,
     productIndex: state.product.productIndex,

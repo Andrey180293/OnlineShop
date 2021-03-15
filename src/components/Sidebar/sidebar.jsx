@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-const Sidebar = ({ setProductType, setHeaderNavContent }) => {
-  const [activeLink, SetActiveLink] = useState(0);
+const Sidebar = ({ setProductType, setHeaderNavContent, productIndex }) => {
+  const [activeLink, SetActiveLink] = useState(productIndex);
   const SetPage = (n) => {
     setProductType(n);
     SetActiveLink(n);
@@ -44,7 +44,7 @@ const Sidebar = ({ setProductType, setHeaderNavContent }) => {
         <NavLink
           to={`/sidebar/${setProd(3)}`}
           className={`collection-item  ${activeLink === 3 && "active"} `}
-          onClick={(e) => SetPage(3)}
+          onClick={() => SetPage(3)}
         >
           Квадрокоптери
         </NavLink>

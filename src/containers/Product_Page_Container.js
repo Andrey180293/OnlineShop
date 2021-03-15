@@ -1,19 +1,29 @@
-import { useEffect, useState, useRef } from "react";
-import App from "../App";
 import "../App.scss";
-
-import { setProductPage } from "../store/action-creators/product";
-
+import { addToCart } from "../store/action-creators/cart";
 import { connect } from "react-redux";
-import firebase from "firebase/app";
-import { database } from "firebase";
-import Content from "../components/Content/content";
 import ProductPage from "../components/Content/ProductPage/ProductPage";
 
-function Product_Page_Container({ page, setHeaderNavContent }) {
+function Product_Page_Container({
+  page,
+  setHeaderNavContent,
+  cartItem,
+  addToCart,
+}) {
   setHeaderNavContent(false);
+  console.log(cartItem);
+  console.log(page);
 
-  return <ProductPage page={page[0]} />;
+  return (
+    <ProductPage
+      addToCart={addToCart}
+      page={page[0]}
+      cartItem={
+        cartItem.filter(
+          (el) => el.id + el.category === page[0].id + page[0].category
+        )[0]
+      }
+    />
+  );
 }
 
 const mapStateToProps = (state) => {
@@ -21,8 +31,9 @@ const mapStateToProps = (state) => {
     theme: state.theme.theme,
     isThemToogle: state.theme.isThemToogle,
     page: state.product.page,
+    cartItem: state.cart.items,
     //isLoading: state.books.isLoading,
   };
 };
 
-export default connect(mapStateToProps, null)(Product_Page_Container);
+export default connect(mapStateToProps, { addToCart })(Product_Page_Container);

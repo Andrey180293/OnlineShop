@@ -1,17 +1,17 @@
 export interface CartState {
   totalPrice: number;
-  items: [];
+  items: any[];
   countItem: number;
 }
 export enum CartActionTypes {
-  SET_PRICE_PLUS = "SET_PRICE_PLUS",
+  ADD_REMOVE_AMOUNT = "ADD_REMOVE_AMOUNT",
   SET_PRICE_MINUS = "SET_PRICE_MINUS",
   ADD_TO_CART = "ADD_TO_CART",
   REMOVE_FROM_CART = "REMOVE_FROM_CART",
 }
 interface SetPricePlusAction {
-  type: CartActionTypes.SET_PRICE_PLUS;
-  payload: number;
+  type: CartActionTypes.ADD_REMOVE_AMOUNT;
+  payload: any;
 }
 interface SetPriceMinusAction {
   type: CartActionTypes.SET_PRICE_MINUS;
@@ -19,11 +19,11 @@ interface SetPriceMinusAction {
 }
 interface AddToCartAction {
   type: CartActionTypes.ADD_TO_CART;
-  payload: [];
+  payload: any;
 }
 interface RemoveFromCartAction {
   type: CartActionTypes.REMOVE_FROM_CART;
-  payload: [];
+  payload: any;
 }
 export type CartAction =
   | SetPricePlusAction

@@ -1,5 +1,6 @@
 import "./header.scss";
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
 
 const DropDownMenu = ({
   theme,
@@ -8,10 +9,18 @@ const DropDownMenu = ({
   setVisiblePopup,
   visiblePopup,
   toogleMenu,
+  cartItem,
+  setProductType,
 }) => {
+  const [dropDown, togleDropDown] = useState(false);
+
   const closeMenu = () => {
     toogleMenu(!isOpenMenu);
     setVisiblePopup(!visiblePopup);
+  };
+  const closeDropMenu = (n) => {
+    toogleMenu(!isOpenMenu);
+    setProductType(n);
   };
   return (
     <ul className={`burger  ${!isOpenMenu && "hide"}`}>
@@ -23,12 +32,44 @@ const DropDownMenu = ({
         Логiн
       </li>
 
-      <li className="item">Каталог Товарiв</li>
-      <NavLink to="/product" onClick={() => toogleMenu(!isOpenMenu)}>
-        <li className="item">
-          <span className="new badge">4</span>Корзина
-        </li>{" "}
-      </NavLink>
+      <li className="item drop_down " onClick={() => togleDropDown(!dropDown)}>
+        <span> Каталог Товарiв</span>
+        <ul className={`dropdown_content ${!dropDown && "hide"}`}>
+          <li>
+            <NavLink to={`/sidebar/piper`} onClick={() => closeDropMenu(0)}>
+              Piper
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to={`/sidebar/phone`} onClick={() => closeDropMenu(1)}>
+              Phone
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to={`/sidebar/robot`} onClick={() => closeDropMenu(2)}>
+              Robot
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to={`/sidebar/kwadrokopter`}
+              onClick={() => closeDropMenu(3)}
+            >
+              keadro
+            </NavLink>
+          </li>
+        </ul>
+      </li>
+      <li className="item">
+        <NavLink to={`/${"cart"}`} onClick={() => toogleMenu(!isOpenMenu)}>
+          <div className={`${!cartItem.length && "btn-flat disabled"} `}>
+            Корзина{" "}
+            {cartItem.length > 0 && (
+              <span className="new badge red ">{cartItem.length}</span>
+            )}
+          </div>
+        </NavLink>
+      </li>
 
       <li className="item">Контакти</li>
     </ul>

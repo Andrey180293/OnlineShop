@@ -1,28 +1,23 @@
 import { connect } from "react-redux";
 import { setFilter } from "../../store/action-creators/filter";
+import "../Header/header.scss";
 
 const Filter = ({ setFilter, visibleHeadNavContent }) => {
   return (
     <div class={`nav-content ${!visibleHeadNavContent && "hide"} `}>
-      <ul
-        class="tabs tabs-transparent"
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          backgroundColor: "#0d47a1",
-        }}
-      >
-        <li className="tab" onClick={() => setFilter("all")}>
-          <a> all</a>
+      <ul className="tabs header-nav ">
+        <li className="header-nav-tab" onClick={() => setFilter("all")}>
+          All
         </li>
-        <li className="tab" onClick={() => setFilter("price_hight")}>
-          <a>hight </a>
+        <li className="header-nav-tab" onClick={() => setFilter("price_hight")}>
+          hight
         </li>
-        <li className="tab" onClick={() => setFilter("price_low")}>
-          <a> low</a>
+        <li className="header-nav-tab" onClick={() => setFilter("price_low")}>
+          {" "}
+          low
         </li>
-        <li className="tab" onClick={() => setFilter("name")}>
-          <a>name </a>
+        <li className="header-nav-tab" onClick={() => setFilter("name")}>
+          name
         </li>
       </ul>
     </div>

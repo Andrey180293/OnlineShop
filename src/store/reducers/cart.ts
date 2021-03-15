@@ -7,8 +7,20 @@ const initialization: CartState = {
 
 function cartReducer(state = initialization, action: CartAction) {
   switch (action.type) {
-    case "SET_PRICE_PLUS": {
-      return { ...state, totalPrice: action.payload + state.totalPrice };
+    case CartActionTypes.ADD_REMOVE_AMOUNT: {
+      return {
+        ...state,
+        items: [
+          ...state.items.filter((el) => {
+            if (
+              el.id + el.category !==
+              action.payload.id + action.payload.category
+            )
+              return el;
+          }),
+          action.payload,
+        ],
+      };
     }
     case "SET_PRICE_MINUS": {
       return { ...state, totalPrice: state.totalPrice - action.payload };
@@ -16,15 +28,18 @@ function cartReducer(state = initialization, action: CartAction) {
     case CartActionTypes.ADD_TO_CART:
       return {
         ...state,
-        items: [...state.items, action.payload],
+        items: [...state.items, { ...action.payload, inCart: true }],
       };
-    case "REMOVE_FROM_CART":
+    case CartActionTypes.REMOVE_FROM_CART:
       return {
         ...state,
-        items: state.items.filter(
-          (item, index, a) =>
-            a.findIndex((f: any) => f.id === action.payload) !== index
-        ),
+        items: [
+          ...state.items.filter(
+            (el) =>
+              el.id + el.category !==
+              action.payload.id + action.payload.category
+          ),
+        ],
       };
     default:
       return state;

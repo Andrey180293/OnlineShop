@@ -9,8 +9,8 @@ export const removeFromCart = (payload: CartAction) => ({
   type: CartActionTypes.REMOVE_FROM_CART,
   payload,
 });
-export const setPricePlus = (payload: CartAction) => ({
-  type: CartActionTypes.SET_PRICE_PLUS,
+export const addRemoveAmount = (payload: CartAction) => ({
+  type: CartActionTypes.ADD_REMOVE_AMOUNT,
   payload,
 });
 export const setPriceMinus = (payload: CartAction) => ({

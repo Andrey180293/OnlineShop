@@ -8,6 +8,8 @@ const initialization: ProductState = {
     [
       {
         id: 1,
+        amount: 1,
+        category: "piper",
         img: [
           "https://hairgum.com.ua/image/cache/catalog/journal3/product/boroda-i-brite/hgba40hr-1---3426354087301-550x550h.jpg",
 
@@ -18,9 +20,13 @@ const initialization: ProductState = {
         price: 500,
         about: "qweqwr wertwt dfkgdfh fdgndjgn fdkghdjrgh dfjgfjg",
         properties: "dfsdf nnnnnnnn 11111111111",
+        inCart: false,
       },
       {
         id: 2,
+        amount: 1,
+        category: "piper",
+
         img: [
           "https://hairgum.com.ua/image/cache/catalog/journal3/product/boroda-i-brite/hgba40hr-1---3426354087301-550x550h.jpg",
 
@@ -31,9 +37,12 @@ const initialization: ProductState = {
         price: 600,
         about: "qweqwr wertwt dfkgdfh fdgndjgn fdkghdjrgh dfjgfjg",
         properties: "dfsdf nnnnnnnn 11111111111",
+        inCart: false,
       },
       {
         id: 3,
+        amount: 1,
+        category: "piper",
         img: [
           "https://hairgum.com.ua/image/cache/catalog/journal3/product/boroda-i-brite/hgba40hr-1---3426354087301-550x550h.jpg",
           "https://images.ua.prom.st/1946606714_w700_h500_ekstrakt-pertsa-chili.jpg",
@@ -43,9 +52,12 @@ const initialization: ProductState = {
         price: 550,
         about: "qweqwr wertwt dfkgdfh fdgndjgn fdkghdjrgh dfjgfjg",
         properties: "dfsdf nnnnnnnn 11111111111",
+        inCart: false,
       },
       {
         id: 4,
+        amount: 1,
+        category: "piper",
         img: [
           "https://hairgum.com.ua/image/cache/catalog/journal3/product/boroda-i-brite/hgba40hr-1---3426354087301-550x550h.jpg",
 
@@ -56,11 +68,14 @@ const initialization: ProductState = {
         price: 570,
         about: "qweqwr wertwt dfkgdfh fdgndjgn fdkghdjrgh dfjgfjg",
         properties: "dfsdf n111111nn 11111111111",
+        inCart: false,
       },
     ],
     [
       {
         id: 1,
+        amount: 1,
+        category: "phone",
         img: [
           "https://i2.rozetka.ua/goods/18804823/226587079_images_18804823909.jpg",
 
@@ -71,9 +86,12 @@ const initialization: ProductState = {
         price: 570,
         about: "qweqwr wertwt dfkgdfh fdgndjgn fdkghdjrgh dfjgfjg",
         properties: "dfsdf n111111nn 11111111111",
+        inCart: false,
       },
       {
         id: 2,
+        amount: 1,
+        category: "phone",
         img: [
           "https://i2.rozetka.ua/goods/18804823/226587079_images_18804823909.jpg",
 
@@ -84,24 +102,30 @@ const initialization: ProductState = {
         price: 580,
         about: "qweqwr wertwt dfkgdfh fdgndjgn fdkghdjrgh dfjgfjg",
         properties: "dfsdf n111111nn 11111111111",
+        inCart: false,
       },
       {
         id: 3,
+        amount: 1,
+        category: "phone",
         img: [
-          "https://i2.rozetka.ua/goods/18804823/226587079_images_18804823909.jpg",
+          "https://i8.rozetka.ua/goods/18696924/copy_xiaomi_657893_5ee8e79149a92_images_18696924439.jpg",
 
-          "https://i8.rozetka.ua/goods/18804826/226587079_images_18804826423.png",
-          "https://i8.rozetka.ua/goods/18804832/226587079_images_18804832009.png",
+          "https://i8.rozetka.ua/goods/18696925/copy_xiaomi_657893_5ee8e79149a92_images_18696925321.jpg",
+          "https://i2.rozetka.ua/goods/18696926/copy_xiaomi_657893_5ee8e79149a92_images_18696926809.jpg",
         ],
         name: "telephone r",
         price: 590,
         about: "qweqwr wertwt dfkgdfh fdgndjgn fdkghdjrgh dfjgfjg",
         properties: "dfsdf n111111nn 11111111111",
+        inCart: false,
       },
     ],
     [
       {
         id: 1,
+        amount: 1,
+        category: "robot",
         img: [
           "https://i2.rozetka.ua/goods/20687894/27755313_images_20687894316.jpg",
 
@@ -113,9 +137,12 @@ const initialization: ProductState = {
         price: 570,
         about: "qweqwr wertwt dfkgdfh fdgndjgn fdkghdjrgh dfjgfjg",
         properties: "dfsdf n111111nn 11111111111",
+        inCart: false,
       },
       {
         id: 2,
+        amount: 1,
+        category: "robot",
         img: [
           "https://i2.rozetka.ua/goods/20687894/27755313_images_20687894316.jpg",
 
@@ -127,9 +154,12 @@ const initialization: ProductState = {
         price: 580,
         about: "qweqwr wertwt dfkgdfh fdgndjgn fdkghdjrgh dfjgfjg",
         properties: "dfsdf n111111nn 11111111111",
+        inCart: false,
       },
       {
         id: 3,
+        amount: 1,
+        category: "robot",
         img: [
           "https://i2.rozetka.ua/goods/20687894/27755313_images_20687894316.jpg",
 
@@ -141,11 +171,14 @@ const initialization: ProductState = {
         price: 590,
         about: "qweqwr wertwt dfkgdfh fdgndjgn fdkghdjrgh dfjgfjg",
         properties: "dfsdf n111111nn 11111111111",
+        inCart: false,
       },
     ],
     [
       {
         id: 1,
+        amount: 1,
+        category: "kwadrokopter",
         img: [
           "https://i8.rozetka.ua/goods/18397545/utg_t_4820176242013_images_18397545973.jpg",
 
@@ -157,9 +190,12 @@ const initialization: ProductState = {
         price: 1570,
         about: "qweqwr wertwt dfkgdfh fdgndjgn fdkghdjrgh dfjgfjg",
         properties: "dfsdf n111111nn 11111111111",
+        inCart: false,
       },
       {
         id: 2,
+        amount: 1,
+        category: "kwadrokopter",
         img: [
           "https://i8.rozetka.ua/goods/18397545/utg_t_4820176242013_images_18397545973.jpg",
 
@@ -171,9 +207,12 @@ const initialization: ProductState = {
         price: 5270,
         about: "qweqwr wertwt dfkgdfh fdgndjgn fdkghdjrgh dfjgfjg",
         properties: "dfsdf n111111nn 11111111111",
+        inCart: false,
       },
       {
         id: 3,
+        amount: 1,
+        category: "kwadrokopter",
         img: [
           "https://flytechnology.ua/image/cache/catalog/oc_1443product-Kvadrokopter-RYZE-Tello_7b52fa3117b5d5e8d2c23ad2f7b73dd6-1000x1000.jpg",
           "https://flytechnology.ua/image/cache/catalog/oc_1443product-Kvadrokopter-Ryze-Tello_4c88a34ba04e9506424da8c864205518-1000x1000.jpg",
@@ -183,23 +222,47 @@ const initialization: ProductState = {
         price: 3570,
         about: "qweqwr wertwt dfkgdfh fdgndjgn fdkghdjrgh dfjgfjg",
         properties: "dfsdf n111111nn 11111111111",
+        inCart: false,
       },
     ],
   ],
+  phones: null,
+  motorcycles: null,
+  quadrocopters: null,
+  robots: null,
   page: null,
-  productIndex: 0,
+  productIndex: false,
 };
 
 function productReducer(state = initialization, action: ProductAction) {
   switch (action.type) {
     case ProductActionTypes.SET_PRODUCT_TYPE:
       return { ...state, productIndex: action.payload };
+
+    case ProductActionTypes.SET_PHONE:
+      return { ...state, phones: action.payload };
+
+    case ProductActionTypes.SET_MOTORCYCLES:
+      return { ...state, products: action.payload };
+    case ProductActionTypes.SET_QADROCOPTERS:
+      return { ...state, quadrocopters: action.payload };
+    case ProductActionTypes.SET_ROBOTS:
+      return { ...state, robots: action.payload };
+
     case ProductActionTypes.SET_PRODUCT_PAGE:
       return {
         ...state,
-        page: state.product[state.productIndex].filter(
-          (el: any) => el.id === action.payload && el
-        ),
+        page: state.productIndex
+          ? state.product[state.productIndex].filter(
+              (el: any) => el.id === action.payload.id && el
+            )
+          : state.product
+              .flat()
+              .filter(
+                (el: any) =>
+                  el.id + el.category ===
+                    action.payload.id + action.payload.category && el
+              ),
       };
 
     default:

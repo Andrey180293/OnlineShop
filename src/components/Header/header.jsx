@@ -14,6 +14,7 @@ const Header = ({
   setHeaderNavContent,
   visibleHeadNavContent,
   setProductType,
+  cartItem,
 }) => {
   const SetPage = (n) => {
     setProductType(n);
@@ -23,10 +24,10 @@ const Header = ({
     <nav class={`nav-extended ${theme.headFootBg}`}>
       <div class="nav-wrapper">
         <NavLink
-          to="/piper"
+          to="/"
           className="brand-logo  "
           style={{ marginLeft: "10px" }}
-          onClick={() => SetPage(0)}
+          onClick={() => SetPage(false)}
         >
           Logo
         </NavLink>
@@ -53,9 +54,21 @@ const Header = ({
             </label>
           </li>
           <li className=" hide-on-med-and-down">
-            <NavLink to={`/${"cart"}`}>
-              Корзина <span className="new badge">4</span>
-            </NavLink>
+            {!cartItem.length ? (
+              <a>
+                <i
+                  class="large material-icons "
+                  //   style={{ marginRight: "68px" }}
+                >
+                  shopping_cart
+                </i>
+              </a>
+            ) : (
+              <NavLink to={`/${"cart"}`} style={{ display: "flex" }}>
+                <i class="large material-icons">shopping_cart</i>
+                <span className="new badge red ">{cartItem.length}</span>
+              </NavLink>
+            )}
           </li>
           <li className=" hide-on-med-and-down">
             <div
@@ -72,48 +85,5 @@ const Header = ({
   );
 };
 export default Header;
-/*
-   <NavLink to="/" className="brand-logo   hide-on-med-and-down">
-            My Shop yhho
-          </NavLink>
-
-           <NavLink to="/cart">
-                Корзина <span className="new badge">4</span>
-              </NavLink>{" "}
-               <div className="left" onClick={() => toogleMenu(!isOpenMenu)}>
-
-
-
-                <ul className="right ">
-            <li className="switch ">
-              <label>
-                <li>
-                  <i className="medium material-icons  ">
-                    {isThemToogle ? "brightness_5" : "brightness_3"}
-                  </i>
-                </li>
-                <input
-                  type="checkbox"
-                  checked={isThemToogle}
-                  onChange={() => toggleTheme(!isThemToogle)}
-                />
-                <span class="lever"></span>
-              </label>
-            </li>
-
-            <li className="hide-on-small-only">
-              <NavLink to="/cart">
-                Корзина <span className="new badge">4</span>
-              </NavLink>{" "}
-            </li>
-            <li className=" hide-on-small-only ">
-              <div
-                style={{ cursor: "pointer" }}
-                onClick={() => setVisiblePopup(!visiblePopup)}
-              >
-                Реэстрацiя
-              </div>
-            </li>
-          </ul>
-
-*/
+//local_grocery_store
+//shopping_cart

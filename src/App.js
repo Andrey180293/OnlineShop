@@ -14,11 +14,15 @@ import Sidebar_Container from "./containers/Sidebar_Container";
 import Header_Container from "./containers/Header_Container";
 import Cart_Container from "./containers/Cart_Container";
 
-function App({ theme, isThemToogle, toggleTheme }) {
-  console.log(theme.contentBg);
-
+function App({
+  theme,
+  isThemToogle,
+  toggleTheme,
+  cartItem,
+  setProductType,
+  products,
+}) {
   const [isOpenMenu, toogleMenu] = useState(false);
-  console.log(isOpenMenu);
   const [visiblePopup, setVisiblePopup] = useState(false);
   const [visibleHeadNavContent, setHeaderNavContent] = useState(true);
 
@@ -42,6 +46,8 @@ function App({ theme, isThemToogle, toggleTheme }) {
           isOpenMenu={isOpenMenu}
           setVisiblePopup={setVisiblePopup}
           visiblePopup={visiblePopup}
+          cartItem={cartItem}
+          setProductType={setProductType}
         />
         <div>
           <Route

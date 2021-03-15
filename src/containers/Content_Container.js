@@ -14,6 +14,7 @@ function Content_Container({
   byFilter,
   productIndex,
   addToCart,
+  cartItem,
 }) {
   const sortBy = (products, byFilter) => {
     switch (byFilter) {
@@ -32,15 +33,18 @@ function Content_Container({
         return products;
     }
   };
-
   return (
     <Content
       setProductPage={setProductPage}
       visiblePopup={visiblePopup}
-      products={sortBy(products[productIndex], byFilter)}
-      allProducts={products}
+      products={
+        productIndex !== false
+          ? sortBy(products[productIndex], byFilter)
+          : sortBy(products.flat(), byFilter)
+      }
       productIndex={productIndex}
       addToCart={addToCart}
+      cartItem={cartItem}
     />
   );
 }
@@ -49,8 +53,9 @@ const mapStateToProps = (state) => {
   return {
     theme: state.theme.theme,
     isThemToogle: state.theme.isThemToogle,
-    products: state.product.product,
 
+    cartItem: state.cart.items,
+    products: state.product.product,
     byFilter: state.filter.byFilter,
     productIndex: state.product.productIndex,
   };
