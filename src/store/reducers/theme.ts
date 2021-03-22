@@ -11,8 +11,9 @@ const darkThemes = {
 };
 const initialization: ThemeState = {
   isThemToogle: false,
-
   theme: ligthThemes,
+  isLoad: null,
+  activeSidebarLink: false,
 };
 
 function themeReducer(state = initialization, action: ThemeAction) {
@@ -25,6 +26,17 @@ function themeReducer(state = initialization, action: ThemeAction) {
         theme: state.isThemToogle ? ligthThemes : darkThemes,
       };
     }
+    case ThemeActionTypes.SET_LOAD:
+      return {
+        ...state,
+        isLoad: action.payload,
+      };
+
+    case ThemeActionTypes.SET_ACTIVE_SIDEBAR_LINK:
+      return {
+        ...state,
+        activeSidebarLink: action.payload,
+      };
 
     default:
       return state;

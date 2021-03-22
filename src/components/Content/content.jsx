@@ -1,8 +1,4 @@
-//import style from "./content.module.scss";
-
-import { useState } from "react";
 import CardItem from "./CardItem";
-import PopUp from "../popUp/PopUp";
 
 const Content = ({
   products,
@@ -26,12 +22,7 @@ const Content = ({
             products.map((item) => {
               return (
                 <CardItem
-                  cartItem={
-                    cartItem.filter(
-                      (el, i, arr) =>
-                        el.id === item.id && el.category === item.category
-                    )[0]
-                  }
+                  cartItem={cartItem.filter((el) => el.id === item.id)[0]}
                   addToCart={addToCart}
                   item={item}
                   productIndex={productIndex}

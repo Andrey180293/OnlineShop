@@ -5,19 +5,18 @@ export interface ProductState {
   quadrocopters: any;
   robots: any;
   page: null | {};
-  productIndex: number | false;
+  pageIndex: number;
 }
 export enum ProductActionTypes {
-  SET_PRODUCT_TYPE = "SET_PRODUCT_TYPE",
+  SET_ALL_PRODUCT = "SET_ALL_PRODUCT",
   SET_PRODUCT_PAGE = "SET_PRODUCT_PAGE",
   SET_PHONE = "SET_PHONE",
   SET_MOTORCYCLES = "SET_MOTORCYCLES",
   SET_QADROCOPTERS = "SET_QADROCOPTERS",
   SET_ROBOTS = "SET_ROBOTS",
 }
-interface SetProductTypeAction {
-  type: ProductActionTypes.SET_PRODUCT_TYPE;
-  payload: number;
+interface SetAllProductAction {
+  type: ProductActionTypes.SET_ALL_PRODUCT;
 }
 interface SetProductPageAction {
   type: ProductActionTypes.SET_PRODUCT_PAGE;
@@ -43,7 +42,7 @@ interface SetRobotsAction {
 }
 
 export type ProductAction =
-  | SetProductTypeAction
+  | SetAllProductAction
   | SetProductPageAction
   | SetPhoneAction
   | SetMotorcyclesAction

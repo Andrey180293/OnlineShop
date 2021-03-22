@@ -13,13 +13,15 @@ import Product_Page_Container from "./containers/Product_Page_Container";
 import Sidebar_Container from "./containers/Sidebar_Container";
 import Header_Container from "./containers/Header_Container";
 import Cart_Container from "./containers/Cart_Container";
+import Preloader from "./commons/Preloader";
+import SidebarFilter from "./components/Sidebar/SidebarFilter/sidebarFilter";
 
 function App({
   theme,
   isThemToogle,
   toggleTheme,
   cartItem,
-  setProductType,
+  setAllProducts,
   products,
 }) {
   const [isOpenMenu, toogleMenu] = useState(false);
@@ -41,15 +43,20 @@ function App({
           visibleHeadNavContent={visibleHeadNavContent}
         />
         <Sidebar_Container setHeaderNavContent={setHeaderNavContent} />
+
         <DropDownMenu
           toogleMenu={toogleMenu}
           isOpenMenu={isOpenMenu}
           setVisiblePopup={setVisiblePopup}
           visiblePopup={visiblePopup}
           cartItem={cartItem}
-          setProductType={setProductType}
+          setAllProducts={setAllProducts}
         />
-        <div>
+        <div
+          style={{
+            minHeight: "100vh",
+          }}
+        >
           <Route
             exact
             path="/"

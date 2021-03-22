@@ -1,34 +1,45 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect } from "react";
 import App from "../App";
 import "../App.scss";
 
-import { toggleTheme } from "../store/action-creators/theme";
+import { toggleTheme, setLoad } from "../store/action-creators/theme";
 import {
-  setProductType,
+  setAllProducts,
   setPhones,
   setMotorcycles,
+  setQudrocopters,
+  setRobots,
 } from "../store/action-creators/product";
 
 import { connect } from "react-redux";
-import { db, auth } from "../servises/firebase";
 
 function AppContainer({
   theme,
   toggleTheme,
   isThemToogle,
   cartItem,
-  setProductType,
+  setAllProducts,
   products,
-  phones,
   setPhones,
   setMotorcycles,
-  motorcycles,
+  setQudrocopters,
+  setRobots,
+  setLoad,
 }) {
   useEffect(() => {
-    //setPhones();
-    setMotorcycles();
+    async function anyNameFunction() {
+      await setLoad(false);
+
+      await setRobots();
+      await setPhones();
+      await setMotorcycles();
+      await setQudrocopters();
+      setAllProducts();
+      setLoad(true);
+    }
+    anyNameFunction();
   }, []);
-  console.log(motorcycles);
+
   return (
     <>
       <App
@@ -36,7 +47,7 @@ function AppContainer({
         isThemToogle={isThemToogle}
         toggleTheme={toggleTheme}
         cartItem={cartItem}
-        setProductType={setProductType}
+        setAllProducts={setAllProducts}
         products={products}
       />
     </>
@@ -47,6 +58,8 @@ const mapStateToProps = (state) => {
   return {
     theme: state.theme.theme,
     isThemToogle: state.theme.isThemToogle,
+    isLoad: state.theme.isLoad,
+
     cartItem: state.cart.items,
     products: state.product.product,
     phones: state.product.phones,
@@ -56,7 +69,10 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   toggleTheme,
-  setProductType,
+  setAllProducts,
   setPhones,
   setMotorcycles,
+  setQudrocopters,
+  setRobots,
+  setLoad,
 })(AppContainer);

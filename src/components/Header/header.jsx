@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../Header/header.scss";
 import { NavLink } from "react-router-dom";
-import Filter from "./filter";
+import SortComponent from "./SortComponent";
 
 const Header = ({
   theme,
@@ -11,15 +11,10 @@ const Header = ({
   toogleMenu,
   setVisiblePopup,
   visiblePopup,
-  setHeaderNavContent,
   visibleHeadNavContent,
-  setProductType,
   cartItem,
+  SetPage,
 }) => {
-  const SetPage = (n) => {
-    setProductType(n);
-    setHeaderNavContent(true);
-  };
   return (
     <nav class={`nav-extended ${theme.headFootBg}`}>
       <div class="nav-wrapper">
@@ -27,7 +22,7 @@ const Header = ({
           to="/"
           className="brand-logo  "
           style={{ marginLeft: "10px" }}
-          onClick={() => SetPage(false)}
+          onClick={() => SetPage()}
         >
           Logo
         </NavLink>
@@ -80,10 +75,10 @@ const Header = ({
           </li>
         </ul>
       </div>
-      <Filter visibleHeadNavContent={visibleHeadNavContent} />
     </nav>
   );
 };
 export default Header;
 //local_grocery_store
 //shopping_cart
+//  <SortComponent visibleHeadNavContent={visibleHeadNavContent} />

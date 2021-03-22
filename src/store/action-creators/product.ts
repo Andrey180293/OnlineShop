@@ -1,10 +1,10 @@
 import { ProductActionTypes, ProductAction } from "./../../types/Product";
+
 import { db, auth } from "../../servises/firebase";
 import { Dispatch } from "redux";
 
-export const setProductType = (payload: ProductAction) => ({
-  type: ProductActionTypes.SET_PRODUCT_TYPE,
-  payload,
+export const setAllProducts = () => ({
+  type: ProductActionTypes.SET_ALL_PRODUCT,
 });
 
 export const setProductPage = (payload: ProductAction) => ({
@@ -14,20 +14,16 @@ export const setProductPage = (payload: ProductAction) => ({
 
 export const setPhones = () => {
   return async (dispatch: Dispatch<ProductAction>) => {
-    try {
-      await db
-        .collection("phones")
-        .get()
-        .then((querySnapshot) => {
-          let items: any = [];
-          querySnapshot.forEach((doc) => {
-            items.push(doc.data());
-          });
-          dispatch({ type: ProductActionTypes.SET_PHONE, payload: [...items] });
+    await db
+      .collection("phones")
+      .get()
+      .then((querySnapshot) => {
+        let items: any = [];
+        querySnapshot.forEach((doc) => {
+          items.push(doc.data());
         });
-    } catch (e) {
-      dispatch({ type: ProductActionTypes.SET_PHONE, payload: "error" });
-    }
+        dispatch({ type: ProductActionTypes.SET_PHONE, payload: [...items] });
+      });
   };
 };
 

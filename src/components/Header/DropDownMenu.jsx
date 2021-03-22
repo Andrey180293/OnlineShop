@@ -1,6 +1,14 @@
 import "./header.scss";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import { connect } from "react-redux";
+
+import {
+  setMotorcycles,
+  setPhones,
+  setRobots,
+  setQudrocopters,
+} from "../../store/action-creators/product";
 
 const DropDownMenu = ({
   theme,
@@ -11,23 +19,28 @@ const DropDownMenu = ({
   toogleMenu,
   cartItem,
   setProductType,
+  setMotorcycles,
+  setPhones,
+  setRobots,
+  setQudrocopters,
 }) => {
   const [dropDown, togleDropDown] = useState(false);
-
+  const setActionType = (i) => {
+    if (i === 0) return setMotorcycles();
+    if (i === 1) return setPhones();
+    if (i === 2) return setRobots();
+    if (i === 3) return setQudrocopters();
+  };
   const closeMenu = () => {
     toogleMenu(!isOpenMenu);
     setVisiblePopup(!visiblePopup);
   };
   const closeDropMenu = (n) => {
     toogleMenu(!isOpenMenu);
-    setProductType(n);
+    setActionType(n);
   };
   return (
     <ul className={`burger  ${!isOpenMenu && "hide"}`}>
-      <NavLink to="/" onClick={() => toogleMenu(!isOpenMenu)}>
-        <li className="burger-header center-align">My Shop Online</li>
-      </NavLink>
-
       <li className="item" onClick={() => closeMenu()}>
         Логiн
       </li>
@@ -36,8 +49,11 @@ const DropDownMenu = ({
         <span> Каталог Товарiв</span>
         <ul className={`dropdown_content ${!dropDown && "hide"}`}>
           <li>
-            <NavLink to={`/sidebar/piper`} onClick={() => closeDropMenu(0)}>
-              Piper
+            <NavLink
+              to={`/sidebar/motorcycle`}
+              onClick={() => closeDropMenu(0)}
+            >
+              Motorcycles
             </NavLink>
           </li>
           <li>
@@ -52,7 +68,7 @@ const DropDownMenu = ({
           </li>
           <li>
             <NavLink
-              to={`/sidebar/kwadrokopter`}
+              to={`/sidebar/qudrocopters`}
               onClick={() => closeDropMenu(3)}
             >
               keadro
@@ -75,4 +91,9 @@ const DropDownMenu = ({
     </ul>
   );
 };
-export default DropDownMenu;
+export default connect(null, {
+  setMotorcycles,
+  setPhones,
+  setRobots,
+  setQudrocopters,
+})(DropDownMenu);

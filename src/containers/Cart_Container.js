@@ -1,10 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import "../App.scss";
 import { Redirect } from "react-router-dom";
-import {
-  setProductType,
-  setProductPage,
-} from "../store/action-creators/product";
+import { setProductPage } from "../store/action-creators/product";
 import {
   addToCart,
   addRemoveAmount,
@@ -27,7 +24,7 @@ function Cart_Container({
     <Cart
       addToCart={addToCart}
       addRemoveAmount={addRemoveAmount}
-      cartItems={cartItems.sort((a, b) => a.price - b.price)}
+      cartItems={cartItems.sort((a, b) => a.id - b.id)}
       removeFromCart={removeFromCart}
       setProductPage={setProductPage}
     />
@@ -49,7 +46,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  setProductType,
   addToCart,
   removeFromCart,
   addRemoveAmount,

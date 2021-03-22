@@ -3,9 +3,7 @@ import TabBar from "./TabBar/TabBar";
 import ProductPage_btn_group from "./ProductPage_Content/ProductPage_btn_group";
 import ProductPage_left_content from "./ProductPage_Content/ProductPage_left_content";
 
-const ProductPage = ({ cartItem, page, addToCart }) => {
-  console.log(cartItem);
-
+const ProductPage = ({ cartItem, page, addToCart, pageIndex }) => {
   return (
     <div className="ProductPage col s12 m12  l10 ">
       <div className="page-container ">
@@ -22,7 +20,7 @@ const ProductPage = ({ cartItem, page, addToCart }) => {
             addToCart={addToCart}
           />
 
-          <TabBar page={page} />
+          <TabBar page={page} pageIndex={pageIndex} />
         </div>
       </div>
     </div>

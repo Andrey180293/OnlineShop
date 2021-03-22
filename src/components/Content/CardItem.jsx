@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-import TabItems from "./ProductPage/TabBar/TabItem";
 
 const CardItem = ({ item, setProductPage, addToCart, cartItem }) => {
   return (
@@ -22,7 +21,7 @@ const CardItem = ({ item, setProductPage, addToCart, cartItem }) => {
             ></div>
 
             <div className="card-content">
-              <p>{item.name}</p>
+              <p style={{ fontSize: "1em" }}>{item.name}</p>
             </div>
           </NavLink>
 

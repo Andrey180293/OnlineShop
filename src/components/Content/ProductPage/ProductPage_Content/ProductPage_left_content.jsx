@@ -4,7 +4,6 @@ import "../ProductPage.scss";
 const ProductPage_left_content = ({ page }) => {
   //fiber_manual_record
   const [activeImg, setActiveImg] = useState(0);
-  console.log(activeImg);
 
   return (
     <div className="page-container-left  col s12 m12 l5">

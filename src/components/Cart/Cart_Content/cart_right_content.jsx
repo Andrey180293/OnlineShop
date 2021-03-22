@@ -10,8 +10,14 @@ const Cart_right_content = ({ item, addRemoveAmount, removeFromCart }) => {
   useEffect(() => {
     addRemoveAmount({ ...item, amount: +productAmount });
   }, [productAmount]);
-  console.log(productAmount);
-  console.log(item.amount);
+  console.log(
+    "productAmount---" + productAmount + "    item.amount---" + item.amount
+  );
+  const closeItem = (item) => {
+    setProdAmount(item.amount);
+    alert(item.amount);
+    removeFromCart(item);
+  };
   return (
     <div className="productCart-right">
       <div className="productCart-right-prise ">
@@ -21,7 +27,11 @@ const Cart_right_content = ({ item, addRemoveAmount, removeFromCart }) => {
         <div
           className="productCart-right-btn-group btn-effect  waves-effect waves-light  red "
           onClick={() => {
-            setProdAmount(productAmount > 0 ? productAmount - 1 : 0);
+            //setProdAmount(productAmount > 0 ? productAmount - 1 : 0);
+            addRemoveAmount({
+              ...item,
+              amount: item.amount > 1 ? item.amount + -1 : 1,
+            });
           }}
         >
           <i className="material-icons">remove</i>
@@ -32,7 +42,7 @@ const Cart_right_content = ({ item, addRemoveAmount, removeFromCart }) => {
         <div
           className="productCart-right-btn-group btn-effect waves-effect waves-light green"
           onClick={() => {
-            setProdAmount(+productAmount + 1);
+            addRemoveAmount({ ...item, amount: item.amount + 1 });
           }}
         >
           <i className="material-icons"> add</i>

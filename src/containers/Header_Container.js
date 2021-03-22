@@ -1,8 +1,12 @@
 import { useEffect, useState, useRef } from "react";
 import "../App.scss";
 
-import { toggleTheme } from "../store/action-creators/theme";
-import { setProductType } from "../store/action-creators/product";
+import {
+  toggleTheme,
+  setActiveSidebarLink,
+  setLoad,
+} from "../store/action-creators/theme";
+import { setAllProducts } from "../store/action-creators/product";
 
 import { connect } from "react-redux";
 import Content from "../components/Content/content";
@@ -18,13 +22,24 @@ function Header_Container({
   visiblePopup,
   setHeaderNavContent,
   visibleHeadNavContent,
-  setProductType,
+  setAllProducts,
   productIndex,
   cartItem,
+  setActiveSidebarLink,
+  setLoad,
 }) {
+  const SetPage = async () => {
+    setLoad(false);
+    setHeaderNavContent(true);
+    setAllProducts();
+    await setActiveSidebarLink(false);
+
+    setLoad(true);
+  };
+
   return (
     <Header
-      setProductType={setProductType}
+      SetPage={SetPage}
       productIndex={productIndex}
       theme={theme}
       isThemToogle={isThemToogle}
@@ -33,7 +48,6 @@ function Header_Container({
       isOpenMenu={isOpenMenu}
       setVisiblePopup={setVisiblePopup}
       visiblePopup={visiblePopup}
-      setHeaderNavContent={setHeaderNavContent}
       visibleHeadNavContent={visibleHeadNavContent}
       cartItem={cartItem}
     />
@@ -53,5 +67,7 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   toggleTheme,
-  setProductType,
+  setLoad,
+  setAllProducts,
+  setActiveSidebarLink,
 })(Header_Container);
