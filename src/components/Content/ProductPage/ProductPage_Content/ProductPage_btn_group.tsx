@@ -1,10 +1,22 @@
 import "../ProductPage.scss";
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
-
-const ProductPage_btn_group = ({ page, cartItem, addToCart }) => {
+import { useState, FC } from "react";
+type PropsType = {
+  cartItem: {};
+  page: {
+    price: number;
+    img: [];
+    name: string;
+  };
+  addToCart: (item: object) => void;
+};
+const ProductPage_btn_group: FC<PropsType> = ({
+  page,
+  cartItem,
+  addToCart,
+}) => {
   const [productAmount, setProdAmount] = useState(1);
-  const onChange = (event) => {
+  const onChange = (event: any) => {
     setProdAmount(event.target.value);
   };
   return (

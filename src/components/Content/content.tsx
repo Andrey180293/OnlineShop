@@ -1,9 +1,17 @@
 import CardItem from "./CardItem";
+import { FC } from "react";
 
-const Content = ({
+type PropsType = {
+  products: [];
+  cartItem: [];
+
+  addRemoveAmount: (item: object) => void;
+  addToCart: (item: object) => void;
+  setProductPage: (item: object) => void;
+};
+const Content: FC<PropsType> = ({
   products,
   setProductPage,
-  productIndex,
   addToCart,
   cartItem,
 }) => {
@@ -19,13 +27,16 @@ const Content = ({
       >
         <div className="row">
           {products &&
-            products.map((item) => {
+            products.map((item: any) => {
               return (
                 <CardItem
-                  cartItem={cartItem.filter((el) => el.id === item.id)[0]}
+                  cartItem={
+                    cartItem.filter(
+                      (el: { id: number }) => el.id === item.id
+                    )[0]
+                  }
                   addToCart={addToCart}
                   item={item}
-                  productIndex={productIndex}
                   setProductPage={setProductPage}
                 />
               );

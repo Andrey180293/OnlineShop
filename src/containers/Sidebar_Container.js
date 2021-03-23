@@ -7,14 +7,14 @@ import {
   setQudrocopters,
   setRobots,
 } from "../store/action-creators/product";
+import { setFilter } from "../store/action-creators/filter";
 
 import { setActiveSidebarLink, setLoad } from "../store/action-creators/theme";
 
 import { connect } from "react-redux";
 import Sidebar from "../components/Sidebar/sidebar";
-import Preloader from "../commons/Preloader";
-import SidebarFilter from "../components/Sidebar/SidebarFilter/sidebarFilter";
 import SortComponent from "../components/Header/SortComponent";
+import { compose } from "redux";
 
 function Sidebar_Container({
   setAllProducts,
@@ -58,7 +58,7 @@ function Sidebar_Container({
         SetPage={SetPage}
         activeSidebarLink={activeSidebarLink}
       />
-      <SortComponent />
+      <SortComponent setFilter={setFilter} />
     </div>
   );
 }
@@ -71,17 +71,20 @@ const mapStateToProps = (state) => {
     isThemToogle: state.theme.isThemToogle,
 
     byFilter: state.filter.byFilter,
-    activeSidebarLink: state.product.activeSidebarLink,
+    activeSidebarLink: state.theme.activeSidebarLink,
     product: state.product.product,
   };
 };
 
-export default connect(mapStateToProps, {
-  setAllProducts,
-  setPhones,
-  setMotorcycles,
-  setQudrocopters,
-  setRobots,
-  setActiveSidebarLink,
-  setLoad,
-})(Sidebar_Container);
+export default compose(
+  connect(mapStateToProps, {
+    setAllProducts,
+    setPhones,
+    setMotorcycles,
+    setQudrocopters,
+    setRobots,
+    setActiveSidebarLink,
+    setLoad,
+    setFilter,
+  })
+)(Sidebar_Container);

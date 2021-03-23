@@ -13,7 +13,7 @@ import {
 
 import { connect } from "react-redux";
 
-function AppContainer({
+const AppContainer = ({
   theme,
   toggleTheme,
   isThemToogle,
@@ -25,7 +25,7 @@ function AppContainer({
   setQudrocopters,
   setRobots,
   setLoad,
-}) {
+}) => {
   useEffect(() => {
     async function anyNameFunction() {
       await setLoad(false);
@@ -52,7 +52,7 @@ function AppContainer({
       />
     </>
   );
-}
+};
 
 const mapStateToProps = (state) => {
   return {

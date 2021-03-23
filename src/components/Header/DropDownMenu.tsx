@@ -1,53 +1,37 @@
 import "./header.scss";
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
-import { connect } from "react-redux";
+import { FC } from "react";
 
-import {
-  setMotorcycles,
-  setPhones,
-  setRobots,
-  setQudrocopters,
-} from "../../store/action-creators/product";
+type PropsType = {
+  cartItem: [];
+  isdropDown: boolean;
+  isOpenMenu: boolean;
+  toogleMenu: (item: boolean) => void;
+  setActionType: (n: number) => any;
+  closeDropMenu: (n: number | null) => void;
+  togleDropDown: (item: boolean) => void;
+};
 
-const DropDownMenu = ({
-  theme,
-  isThemToogle,
-  isOpenMenu,
-  setVisiblePopup,
-  visiblePopup,
-  toogleMenu,
+const DropDownMenu: FC<PropsType> = ({
   cartItem,
-  setProductType,
-  setMotorcycles,
-  setPhones,
-  setRobots,
-  setQudrocopters,
+  isdropDown,
+  isOpenMenu,
+  toogleMenu,
+  closeDropMenu,
+  togleDropDown,
 }) => {
-  const [dropDown, togleDropDown] = useState(false);
-  const setActionType = (i) => {
-    if (i === 0) return setMotorcycles();
-    if (i === 1) return setPhones();
-    if (i === 2) return setRobots();
-    if (i === 3) return setQudrocopters();
-  };
-  const closeMenu = () => {
-    toogleMenu(!isOpenMenu);
-    setVisiblePopup(!visiblePopup);
-  };
-  const closeDropMenu = (n) => {
-    toogleMenu(!isOpenMenu);
-    setActionType(n);
-  };
   return (
     <ul className={`burger  ${!isOpenMenu && "hide"}`}>
-      <li className="item" onClick={() => closeMenu()}>
+      <li className="item" onClick={() => closeDropMenu(null)}>
         Логiн
       </li>
 
-      <li className="item drop_down " onClick={() => togleDropDown(!dropDown)}>
+      <li
+        className="item drop_down "
+        onClick={() => togleDropDown(!isdropDown)}
+      >
         <span> Каталог Товарiв</span>
-        <ul className={`dropdown_content ${!dropDown && "hide"}`}>
+        <ul className={`dropdown_content ${!isdropDown && "hide"}`}>
           <li>
             <NavLink
               to={`/sidebar/motorcycle`}
@@ -91,9 +75,4 @@ const DropDownMenu = ({
     </ul>
   );
 };
-export default connect(null, {
-  setMotorcycles,
-  setPhones,
-  setRobots,
-  setQudrocopters,
-})(DropDownMenu);
+export default DropDownMenu;

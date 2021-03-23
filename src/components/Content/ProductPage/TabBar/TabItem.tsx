@@ -1,6 +1,10 @@
 import "./TabBar.scss";
-
-const TabItems = ({ activeTab, setActivTab }) => {
+import { FC } from "react";
+type PropsType = {
+  setActivTab: (n: number) => void;
+  activeTab: number;
+};
+const TabItems: FC<PropsType> = ({ activeTab, setActivTab }) => {
   return (
     <ul className="tabItems ">
       <li

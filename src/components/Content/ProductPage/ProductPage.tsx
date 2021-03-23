@@ -2,8 +2,23 @@ import "./ProductPage.scss";
 import TabBar from "./TabBar/TabBar";
 import ProductPage_btn_group from "./ProductPage_Content/ProductPage_btn_group";
 import ProductPage_left_content from "./ProductPage_Content/ProductPage_left_content";
-
-const ProductPage = ({ cartItem, page, addToCart, pageIndex }) => {
+import { FC } from "react";
+type PropsType = {
+  cartItem: {};
+  page: {
+    price: number;
+    img: [];
+    name: string;
+  };
+  pageIndex: number;
+  addToCart: (item: object) => void;
+};
+const ProductPage: FC<PropsType> = ({
+  cartItem,
+  page,
+  pageIndex,
+  addToCart,
+}) => {
   return (
     <div className="ProductPage col s12 m12  l10 ">
       <div className="page-container ">

@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { NavLink } from "react-router-dom";
-const Sidebar = ({ activeSidebarLink, SetPage, setProd }) => {
+
+type PropsType = {
+  activeSidebarLink: number | false;
+  SetPage: (item: number) => void;
+  setProd: (item: number) => string;
+};
+
+const Sidebar: FC<PropsType> = ({ activeSidebarLink, SetPage, setProd }) => {
   return (
-    <div
-    // className="col s12 m0 l2 hide-on-med-and-down"
-    // style={{ minHeight: "100vh" }}
-    >
+    <div>
       <div className="collection ">
         <NavLink
           to={`/sidebar/${setProd(0)}`}

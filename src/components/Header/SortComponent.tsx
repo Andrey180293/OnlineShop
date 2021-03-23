@@ -1,21 +1,18 @@
-import { useState } from "react";
-import { connect } from "react-redux";
-import { setFilter } from "../../store/action-creators/filter";
+import { useState, FC } from "react";
 import "../Header/header.scss";
-
-const SortComponent = ({ setFilter, visibleHeadNavContent }) => {
+type PropsType = {
+  setFilter: (str: string) => void;
+};
+const SortComponent: FC<PropsType> = ({ setFilter }) => {
   const [activeLink, setActiveLink] = useState("all");
 
-  const SetPage = async (str) => {
+  const SetPage = (str: string) => {
     setActiveLink(str);
     setFilter(str);
   };
 
   return (
-    <div
-    // className="col s12 m0 l2 hide-on-med-and-down"
-    // style={{ minHeight: "100vh" }}
-    >
+    <div>
       <ul className="collection " style={{ cursor: "pointer" }}>
         <li
           className={`collection-item  ${activeLink === "all" && " active"} `}
@@ -51,4 +48,4 @@ const SortComponent = ({ setFilter, visibleHeadNavContent }) => {
   );
 };
 
-export default connect(null, { setFilter })(SortComponent);
+export default SortComponent;

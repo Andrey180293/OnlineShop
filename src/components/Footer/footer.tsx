@@ -1,4 +1,10 @@
-const Footer = ({ theme }) => {
+import { FC } from "react";
+type PropsType = {
+  theme: {
+    headFootBg: string;
+  };
+};
+const Footer: FC<PropsType> = ({ theme }) => {
   return (
     <footer className={`page-footer  hide-on-med-and-down ${theme.headFootBg}`}>
       <div className="container">

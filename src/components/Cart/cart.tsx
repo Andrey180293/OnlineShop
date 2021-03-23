@@ -1,9 +1,16 @@
+import { FC } from "react";
 import "./cart.scss";
 import Cart_left_content from "./Cart_Content/cart_left_content";
 import Cart_right_content from "./Cart_Content/cart_right_content";
 
-const Cart = ({
-  addToCart,
+type PropsType = {
+  cartItems: any[];
+  addRemoveAmount: (item: object) => void;
+  removeFromCart: (item: object) => void;
+  setProductPage: (item: object) => void;
+};
+
+const Cart: FC<PropsType> = ({
   cartItems,
   addRemoveAmount,
   removeFromCart,
@@ -30,7 +37,6 @@ const Cart = ({
                 />
 
                 <Cart_right_content
-                  addToCart={addToCart}
                   addRemoveAmount={addRemoveAmount}
                   item={item}
                   removeFromCart={removeFromCart}

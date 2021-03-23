@@ -1,23 +1,33 @@
-import { useState } from "react";
+import { FC } from "react";
 import "../Header/header.scss";
 import { NavLink } from "react-router-dom";
-import SortComponent from "./SortComponent";
-
-const Header = ({
+type PropsType = {
+  theme: {
+    headFootBg: string;
+  };
+  isThemToogle: boolean;
+  visiblePopup: boolean;
+  cartItem: [];
+  isOpenMenu: boolean;
+  toggleTheme: (isThemToogle: boolean) => void;
+  toogleMenu: (isOpenMenu: boolean) => void;
+  setVisiblePopup: (visiblePopup: boolean) => void;
+  SetPage: () => void;
+};
+const Header: FC<PropsType> = ({
   theme,
   isThemToogle,
-  toggleTheme,
+  visiblePopup,
+  cartItem,
   isOpenMenu,
+  toggleTheme,
   toogleMenu,
   setVisiblePopup,
-  visiblePopup,
-  visibleHeadNavContent,
-  cartItem,
   SetPage,
 }) => {
   return (
-    <nav class={`nav-extended ${theme.headFootBg}`}>
-      <div class="nav-wrapper">
+    <nav className={`nav-extended ${theme.headFootBg}`}>
+      <div className="nav-wrapper">
         <NavLink
           to="/"
           className="brand-logo  "
@@ -27,8 +37,8 @@ const Header = ({
           Logo
         </NavLink>
 
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger">
-          <i class="material-icons" onClick={() => toogleMenu(!isOpenMenu)}>
+        <a href="#" data-target="mobile-demo" className="sidenav-trigger">
+          <i className="material-icons" onClick={() => toogleMenu(!isOpenMenu)}>
             menu
           </i>
         </a>
@@ -45,14 +55,14 @@ const Header = ({
                 checked={isThemToogle}
                 onChange={() => toggleTheme(!isThemToogle)}
               />
-              <span class="lever"></span>
+              <span className="lever"></span>
             </label>
           </li>
           <li className=" hide-on-med-and-down">
             {!cartItem.length ? (
               <a>
                 <i
-                  class="large material-icons "
+                  className="large material-icons "
                   //   style={{ marginRight: "68px" }}
                 >
                   shopping_cart
@@ -60,7 +70,7 @@ const Header = ({
               </a>
             ) : (
               <NavLink to={`/${"cart"}`} style={{ display: "flex" }}>
-                <i class="large material-icons">shopping_cart</i>
+                <i className="large material-icons">shopping_cart</i>
                 <span className="new badge red ">{cartItem.length}</span>
               </NavLink>
             )}
@@ -79,6 +89,3 @@ const Header = ({
   );
 };
 export default Header;
-//local_grocery_store
-//shopping_cart
-//  <SortComponent visibleHeadNavContent={visibleHeadNavContent} />

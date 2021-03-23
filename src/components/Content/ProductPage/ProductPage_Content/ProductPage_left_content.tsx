@@ -1,7 +1,12 @@
-import { useState } from "react";
+import { useState, FC } from "react";
 import "../ProductPage.scss";
-
-const ProductPage_left_content = ({ page }) => {
+type PropsType = {
+  page: {
+    img: [];
+    name: string;
+  };
+};
+const ProductPage_left_content: FC<PropsType> = ({ page }) => {
   //fiber_manual_record
   const [activeImg, setActiveImg] = useState(0);
 

@@ -1,6 +1,26 @@
 import { NavLink } from "react-router-dom";
+import { FC } from "react";
 
-const CardItem = ({ item, setProductPage, addToCart, cartItem }) => {
+type PropsType = {
+  cartItem: {
+    id: number;
+  };
+  item: {
+    category: string;
+    id: number;
+    img: string;
+    name: string;
+    price: number;
+  };
+  addToCart: (item: object) => void;
+  setProductPage: (item: object) => void;
+};
+const CardItem: FC<PropsType> = ({
+  item,
+  setProductPage,
+  addToCart,
+  cartItem,
+}) => {
   return (
     <>
       {" "}

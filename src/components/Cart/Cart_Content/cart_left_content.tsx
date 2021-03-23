@@ -1,7 +1,19 @@
 import "../cart.scss";
 import { NavLink } from "react-router-dom";
+import { FC } from "react";
 
-const Cart_left_content = ({ item, setProductPage }) => {
+type PropsType = {
+  item: {
+    category: string;
+    id: number;
+    img: string;
+    name: string;
+  };
+
+  setProductPage: (item: object) => void;
+};
+
+const Cart_left_content: FC<PropsType> = ({ item, setProductPage }) => {
   return (
     <div className="productCart-left">
       <div className="productCart-left-img">

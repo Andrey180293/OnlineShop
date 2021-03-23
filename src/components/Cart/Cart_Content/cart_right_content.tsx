@@ -1,23 +1,30 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, FC } from "react";
 import "../cart.scss";
 
-const Cart_right_content = ({ item, addRemoveAmount, removeFromCart }) => {
-  const [productAmount, setProdAmount] = useState(item.amount);
+type PropsType = {
+  item: {
+    amount: number;
+    price: number;
+  };
 
-  const onChange = (event) => {
-    setProdAmount(event.target.value);
+  addRemoveAmount: (item: object) => void;
+  removeFromCart: (item: object) => void;
+};
+
+const Cart_right_content: FC<PropsType> = ({
+  item,
+  addRemoveAmount,
+  removeFromCart,
+}) => {
+  const [productAmount, setAmountProduct] = useState(item.amount);
+
+  const onChange = (event: any) => {
+    setAmountProduct(event.target.value);
   };
   useEffect(() => {
     addRemoveAmount({ ...item, amount: +productAmount });
   }, [productAmount]);
-  console.log(
-    "productAmount---" + productAmount + "    item.amount---" + item.amount
-  );
-  const closeItem = (item) => {
-    setProdAmount(item.amount);
-    alert(item.amount);
-    removeFromCart(item);
-  };
+
   return (
     <div className="productCart-right">
       <div className="productCart-right-prise ">
@@ -27,7 +34,6 @@ const Cart_right_content = ({ item, addRemoveAmount, removeFromCart }) => {
         <div
           className="productCart-right-btn-group btn-effect  waves-effect waves-light  red "
           onClick={() => {
-            //setProdAmount(productAmount > 0 ? productAmount - 1 : 0);
             addRemoveAmount({
               ...item,
               amount: item.amount > 1 ? item.amount + -1 : 1,
