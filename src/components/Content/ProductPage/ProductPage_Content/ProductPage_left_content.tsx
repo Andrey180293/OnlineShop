@@ -7,8 +7,7 @@ type PropsType = {
   };
 };
 const ProductPage_left_content: FC<PropsType> = ({ page }) => {
-  //fiber_manual_record
-  const [activeImg, setActiveImg] = useState(0);
+  const [activeImg, setActiveImg] = useState<number>(0);
 
   return (
     <div className="page-container-left  col s12 m12 l5">

@@ -7,7 +7,6 @@ type PropsType = {
   isdropDown: boolean;
   isOpenMenu: boolean;
   toogleMenu: (item: boolean) => void;
-  setActionType: (n: number) => any;
   closeDropMenu: (n: number | null) => void;
   togleDropDown: (item: boolean) => void;
 };
@@ -21,11 +20,7 @@ const DropDownMenu: FC<PropsType> = ({
   togleDropDown,
 }) => {
   return (
-    <ul className={`burger  ${!isOpenMenu && "hide"}`}>
-      <li className="item" onClick={() => closeDropMenu(null)}>
-        Логiн
-      </li>
-
+    <ul className={`burger   ${!isOpenMenu && "hide"}`}>
       <li
         className="item drop_down "
         onClick={() => togleDropDown(!isdropDown)}

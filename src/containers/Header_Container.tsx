@@ -1,6 +1,4 @@
-import { useEffect, useState, useRef } from "react";
 import "../App.scss";
-
 import {
   toggleTheme,
   setActiveSidebarLink,
@@ -9,28 +7,42 @@ import {
 import { setAllProducts } from "../store/action-creators/product";
 
 import { connect } from "react-redux";
-import Content from "../components/Content/content";
 import Header from "../components/Header/header";
+import { StateType } from "../store/store";
+import { compose } from "redux";
+interface HeaderProps {
+  theme: {
+    headFootBg: string;
+  };
+  isThemToogle: boolean;
+  cartItem: [];
+  isOpenMenu: boolean;
+  visiblePopup: boolean;
+  toggleTheme: (isThemToogle: boolean) => void;
+  toogleMenu: (isOpenMenu: boolean) => void;
+  setVisiblePopup: (visiblePopup: boolean) => void;
+  setHeaderNavContent: (visibleHeadNavContent: boolean) => void;
+  setAllProducts: () => void;
+  setLoad: (isLoad: boolean) => void;
+  setActiveSidebarLink: (isActive: boolean) => void;
+}
 
-function Header_Container({
+const Header_Container = ({
   theme,
   isThemToogle,
-  toggleTheme,
+  cartItem,
   isOpenMenu,
+  visiblePopup,
+  setActiveSidebarLink,
+  toggleTheme,
   toogleMenu,
   setVisiblePopup,
-  visiblePopup,
-  setHeaderNavContent,
-  visibleHeadNavContent,
   setAllProducts,
-  productIndex,
-  cartItem,
-  setActiveSidebarLink,
+
   setLoad,
-}) {
+}: HeaderProps) => {
   const SetPage = async () => {
     setLoad(false);
-    setHeaderNavContent(true);
     setAllProducts();
     await setActiveSidebarLink(false);
 
@@ -40,7 +52,6 @@ function Header_Container({
   return (
     <Header
       SetPage={SetPage}
-      productIndex={productIndex}
       theme={theme}
       isThemToogle={isThemToogle}
       toggleTheme={toggleTheme}
@@ -48,26 +59,25 @@ function Header_Container({
       isOpenMenu={isOpenMenu}
       setVisiblePopup={setVisiblePopup}
       visiblePopup={visiblePopup}
-      visibleHeadNavContent={visibleHeadNavContent}
       cartItem={cartItem}
     />
   );
-}
+};
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: StateType) => {
   return {
     theme: state.theme.theme,
     isThemToogle: state.theme.isThemToogle,
     cartItem: state.cart.items,
-
     byFilter: state.filter.byFilter,
-    productIndex: state.product.productIndex,
   };
 };
 
-export default connect(mapStateToProps, {
-  toggleTheme,
-  setLoad,
-  setAllProducts,
-  setActiveSidebarLink,
-})(Header_Container);
+export default compose<StateType>(
+  connect(mapStateToProps, {
+    toggleTheme,
+    setLoad,
+    setAllProducts,
+    setActiveSidebarLink,
+  })
+)(Header_Container);

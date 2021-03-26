@@ -1,10 +1,10 @@
 export interface ProductState {
-  product: any[];
-  phones: any | null;
+  product: Array<object>;
+  phones: any;
   motorcycles: any;
   quadrocopters: any;
   robots: any;
-  page: null | {};
+  page: any;
   pageIndex: number;
 }
 export enum ProductActionTypes {

@@ -15,36 +15,47 @@ import { connect } from "react-redux";
 import Sidebar from "../components/Sidebar/sidebar";
 import SortComponent from "../components/Header/SortComponent";
 import { compose } from "redux";
+import { StateType } from "../store/store";
+import { FC } from "react";
 
-function Sidebar_Container({
-  setAllProducts,
-  setHeaderNavContent,
+type SidebarProps = {
+  isActiveSidebarLink: number | false;
+  setLoad: (isLoad: boolean) => void;
+  setActiveSidebarLink: (isActiveSidebarLink: number | false) => void;
+  setVisiblePopup: (visiblePopup: boolean) => void;
+  toogleMenu: (isOpenMenu: boolean) => void;
+  setMotorcycles: () => void;
+  setPhones: () => void;
+  setRobots: () => void;
+  setQudrocopters: () => void;
+  setFilter: () => void;
+};
+
+const Sidebar_Container: FC<SidebarProps> = ({
+  isActiveSidebarLink,
   setPhones,
   setMotorcycles,
   setQudrocopters,
   setRobots,
   setActiveSidebarLink,
-  activeSidebarLink,
   setLoad,
-  isLoad,
-  product,
-}) {
-  const SetPage = async (n) => {
+  setFilter,
+}) => {
+  const SetPage = async (n: number) => {
     setLoad(false);
     await setActionType(n);
     await setActiveSidebarLink(n);
-    await setHeaderNavContent(true);
     setLoad(true);
   };
 
-  const setActionType = (i) => {
-    if (i === 0) return setMotorcycles();
-    if (i === 1) return setPhones();
-    if (i === 2) return setRobots();
-    if (i === 3) return setQudrocopters();
+  const setActionType = (n: number) => {
+    if (n === 0) return setMotorcycles();
+    if (n === 1) return setPhones();
+    if (n === 2) return setRobots();
+    if (n === 3) return setQudrocopters();
   };
 
-  const setProd = (i) => {
+  const setProd = (i: number) => {
     if (i === 0) return "motorcycle";
     if (i === 1) return "phone";
     if (i === 2) return "robot";
@@ -53,17 +64,16 @@ function Sidebar_Container({
   return (
     <div className="col s12 m0 l2 hide-on-med-and-down">
       <Sidebar
-        setAllProducts={setAllProducts}
         setProd={setProd}
         SetPage={SetPage}
-        activeSidebarLink={activeSidebarLink}
+        isActiveSidebarLink={isActiveSidebarLink}
       />
       <SortComponent setFilter={setFilter} />
     </div>
   );
-}
+};
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: StateType) => {
   return {
     theme: state.theme.theme,
     isLoad: state.theme.isLoad,
@@ -71,12 +81,13 @@ const mapStateToProps = (state) => {
     isThemToogle: state.theme.isThemToogle,
 
     byFilter: state.filter.byFilter,
-    activeSidebarLink: state.theme.activeSidebarLink,
+    isActiveSidebarLink: state.theme.isActiveSidebarLink,
+    // @ts-ignore
     product: state.product.product,
   };
 };
 
-export default compose(
+export default compose<StateType>(
   connect(mapStateToProps, {
     setAllProducts,
     setPhones,

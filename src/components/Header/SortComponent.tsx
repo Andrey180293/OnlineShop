@@ -4,9 +4,9 @@ type PropsType = {
   setFilter: (str: string) => void;
 };
 const SortComponent: FC<PropsType> = ({ setFilter }) => {
-  const [activeLink, setActiveLink] = useState("all");
+  const [activeLink, setActiveLink] = useState<string>("all");
 
-  const SetPage = (str: string) => {
+  const Sort = (str: string) => {
     setActiveLink(str);
     setFilter(str);
   };
@@ -16,7 +16,7 @@ const SortComponent: FC<PropsType> = ({ setFilter }) => {
       <ul className="collection " style={{ cursor: "pointer" }}>
         <li
           className={`collection-item  ${activeLink === "all" && " active"} `}
-          onClick={() => SetPage("all")}
+          onClick={() => Sort("all")}
         >
           {" "}
           all
@@ -25,7 +25,7 @@ const SortComponent: FC<PropsType> = ({ setFilter }) => {
           className={`collection-item ${
             activeLink === "price_hight" && "active"
           }`}
-          onClick={() => SetPage("price_hight")}
+          onClick={() => Sort("price_hight")}
         >
           price_hight
         </li>
@@ -33,13 +33,13 @@ const SortComponent: FC<PropsType> = ({ setFilter }) => {
           className={`collection-item ${
             activeLink === "price_low" && "active"
           } `}
-          onClick={() => SetPage("price_low")}
+          onClick={() => Sort("price_low")}
         >
           price_low
         </li>
         <li
           className={`collection-item  ${activeLink === "name" && "active"} `}
-          onClick={() => SetPage("name")}
+          onClick={() => Sort("name")}
         >
           Name
         </li>

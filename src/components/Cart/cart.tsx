@@ -20,9 +20,9 @@ const Cart: FC<PropsType> = ({
     <div className="productCart  ">
       <div className=" col s12 m12  l10 ">
         {cartItems &&
-          cartItems.map((item) => {
+          cartItems.map((item, key) => {
             return (
-              <div className="productCart-container  ">
+              <div className="productCart-container  " key={key}>
                 <div
                   className="close-small-display   "
                   onClick={() => {

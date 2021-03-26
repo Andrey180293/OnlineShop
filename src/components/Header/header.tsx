@@ -17,12 +17,10 @@ type PropsType = {
 const Header: FC<PropsType> = ({
   theme,
   isThemToogle,
-  visiblePopup,
   cartItem,
   isOpenMenu,
   toggleTheme,
   toogleMenu,
-  setVisiblePopup,
   SetPage,
 }) => {
   return (
@@ -30,8 +28,8 @@ const Header: FC<PropsType> = ({
       <div className="nav-wrapper">
         <NavLink
           to="/"
-          className="brand-logo  "
-          style={{ marginLeft: "10px" }}
+          className="brand-logo left"
+          style={{ marginLeft: "40px" }}
           onClick={() => SetPage()}
         >
           Logo
@@ -39,14 +37,14 @@ const Header: FC<PropsType> = ({
 
         <a href="#" data-target="mobile-demo" className="sidenav-trigger">
           <i className="material-icons" onClick={() => toogleMenu(!isOpenMenu)}>
-            menu
+            {!isOpenMenu ? "menu" : "close"}
           </i>
         </a>
         <ul id="nav-mobile" className="right ">
           <li className="switch  ">
             <label>
               <li>
-                <i className="medium material-icons   ">
+                <i className="medium material-icons hide-on-small-only">
                   {isThemToogle ? "brightness_5" : "brightness_3"}
                 </i>
               </li>
@@ -58,15 +56,10 @@ const Header: FC<PropsType> = ({
               <span className="lever"></span>
             </label>
           </li>
-          <li className=" hide-on-med-and-down">
+          <li>
             {!cartItem.length ? (
               <a>
-                <i
-                  className="large material-icons "
-                  //   style={{ marginRight: "68px" }}
-                >
-                  shopping_cart
-                </i>
+                <i className="large material-icons ">shopping_cart</i>
               </a>
             ) : (
               <NavLink to={`/${"cart"}`} style={{ display: "flex" }}>
@@ -74,14 +67,6 @@ const Header: FC<PropsType> = ({
                 <span className="new badge red ">{cartItem.length}</span>
               </NavLink>
             )}
-          </li>
-          <li className=" hide-on-med-and-down">
-            <div
-              style={{ cursor: "pointer", marginRight: "10px" }}
-              onClick={() => setVisiblePopup(!visiblePopup)}
-            >
-              Реэстрацiя
-            </div>
           </li>
         </ul>
       </div>

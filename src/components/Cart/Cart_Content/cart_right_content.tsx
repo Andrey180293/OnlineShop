@@ -16,7 +16,7 @@ const Cart_right_content: FC<PropsType> = ({
   addRemoveAmount,
   removeFromCart,
 }) => {
-  const [productAmount, setAmountProduct] = useState(item.amount);
+  const [productAmount, setAmountProduct] = useState<number>(item.amount);
 
   const onChange = (event: any) => {
     setAmountProduct(event.target.value);

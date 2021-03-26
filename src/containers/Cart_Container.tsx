@@ -7,25 +7,32 @@ import { connect } from "react-redux";
 import Cart from "../components/Cart/cart";
 
 import { compose } from "redux";
+import { StateType } from "../store/store";
+interface CartProps {
+  cartItems: Array<object>;
+  addRemoveAmount: (item: object) => void;
+  removeFromCart: (item: object) => void;
+  setProductPage: (item: object) => void;
+}
 
 const Cart_Container = ({
   cartItems,
   addRemoveAmount,
   removeFromCart,
   setProductPage,
-}) => {
+}: CartProps) => {
   if (cartItems.length === 0) return <Redirect to="/" />;
   return (
     <Cart
       addRemoveAmount={addRemoveAmount}
-      cartItems={cartItems.sort((a, b) => a.id - b.id)}
+      cartItems={cartItems.sort((a: any, b: any) => a.id - b.id)}
       removeFromCart={removeFromCart}
       setProductPage={setProductPage}
     />
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: StateType) => {
   return {
     theme: state.theme.theme,
     isThemToogle: state.theme.isThemToogle,
@@ -35,7 +42,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default compose(
+export default compose<StateType>(
   connect(mapStateToProps, {
     removeFromCart,
     addRemoveAmount,

@@ -1,39 +1,42 @@
 import "../App.scss";
 import { addToCart } from "../store/action-creators/cart";
-import { setLoad } from "../store/action-creators/theme";
-
 import { connect } from "react-redux";
 import ProductPage from "../components/Content/ProductPage/ProductPage";
-import { useEffect } from "react";
 import Preloader from "../commons/Preloader";
-
+import { StateType } from "../store/store";
+import { compose } from "redux";
+interface PageProps {
+  isLoad: boolean;
+  pageIndex: number;
+  page: any;
+  cartItem: Array<object>;
+  addToCart: (item: {}) => void;
+}
 function Product_Page_Container({
   page,
-  setHeaderNavContent,
   cartItem,
   addToCart,
   isLoad,
-  setLoad,
   pageIndex,
-}) {
-  setHeaderNavContent(false);
-
+}: PageProps) {
   if (isLoad === false) return <Preloader />;
   return (
     <ProductPage
       pageIndex={pageIndex}
       addToCart={addToCart}
       page={page[0]}
-      cartItem={cartItem.filter((el) => el.id === page[0].id)[0]}
+      cartItem={cartItem.filter((el: any) => el.id === page[0].id)[0]}
     />
   );
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: StateType) => {
   return {
     theme: state.theme.theme,
     isThemToogle: state.theme.isThemToogle,
+    // @ts-ignore
     page: state.product.page,
+    // @ts-ignore
     pageIndex: state.product.pageIndex,
 
     cartItem: state.cart.items,
@@ -41,6 +44,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { addToCart, setLoad })(
+export default compose<StateType>(connect(mapStateToProps, { addToCart }))(
   Product_Page_Container
 );

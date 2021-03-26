@@ -1,8 +1,6 @@
-import {
-  ProductState,
-  ProductActionTypes,
-  ProductAction,
-} from "./../../types/Product";
+import { ProductAction, ProductActionTypes } from "../../types/Product";
+import { ProductState } from "../../types/Product";
+
 const initialization: ProductState = {
   product: [],
   phones: null,

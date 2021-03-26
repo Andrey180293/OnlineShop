@@ -15,7 +15,7 @@ const ProductPage_btn_group: FC<PropsType> = ({
   cartItem,
   addToCart,
 }) => {
-  const [productAmount, setProdAmount] = useState(1);
+  const [productAmount, setProdAmount] = useState<number>(1);
   const onChange = (event: any) => {
     setProdAmount(event.target.value);
   };

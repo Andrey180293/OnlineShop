@@ -9,30 +9,41 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import DropDownMenu from "../components/Header/DropDownMenu";
 import { useState } from "react";
+import { StateType } from "../store/store";
+
+interface DropDownProps {
+  isOpenMenu: boolean;
+  visiblePopup: boolean;
+  cartItem: [];
+
+  setVisiblePopup: (visiblePopup: boolean) => void;
+  toogleMenu: (isOpenMenu: boolean) => void;
+  setMotorcycles: () => void;
+  setPhones: () => void;
+  setRobots: () => void;
+  setQudrocopters: () => void;
+}
 
 const DropDown_Container = ({
+  cartItem,
+  visiblePopup,
   isOpenMenu,
   setVisiblePopup,
-  visiblePopup,
   toogleMenu,
-  cartItem,
   setMotorcycles,
   setPhones,
   setRobots,
   setQudrocopters,
-}) => {
-  const [isdropDown, togleDropDown] = useState(false);
-  const setActionType = (i) => {
+}: DropDownProps) => {
+  const [isdropDown, togleDropDown] = useState<boolean>(false);
+  const setActionType = (i: number | null) => {
     if (i === 0) return setMotorcycles();
     if (i === 1) return setPhones();
     if (i === 2) return setRobots();
     if (i === 3) return setQudrocopters();
   };
-  const closeMenu = () => {
-    toogleMenu(!isOpenMenu);
-    setVisiblePopup(!visiblePopup);
-  };
-  const closeDropMenu = (n) => {
+
+  const closeDropMenu = (n: number | null) => {
     toogleMenu(!isOpenMenu);
     if (n === null) {
       setVisiblePopup(!visiblePopup);
@@ -44,22 +55,20 @@ const DropDown_Container = ({
     <DropDownMenu
       cartItem={cartItem}
       isdropDown={isdropDown}
+      isOpenMenu={isOpenMenu}
       togleDropDown={togleDropDown}
-      setActionType={setActionType}
-      closeMenu={closeMenu}
       closeDropMenu={closeDropMenu}
       toogleMenu={toogleMenu}
-      isOpenMenu={isOpenMenu}
     />
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: StateType) => {
   return {
     cartItem: state.cart.items,
   };
 };
-export default compose(
+export default compose<StateType>(
   connect(mapStateToProps, {
     setMotorcycles,
     setPhones,

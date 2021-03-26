@@ -13,7 +13,7 @@ const initialization: ThemeState = {
   isThemToogle: false,
   theme: ligthThemes,
   isLoad: null,
-  activeSidebarLink: false,
+  isActiveSidebarLink: false,
 };
 
 function themeReducer(state = initialization, action: ThemeAction) {
@@ -35,7 +35,7 @@ function themeReducer(state = initialization, action: ThemeAction) {
     case ThemeActionTypes.SET_ACTIVE_SIDEBAR_LINK:
       return {
         ...state,
-        activeSidebarLink: action.payload,
+        isActiveSidebarLink: action.payload,
       };
 
     default:

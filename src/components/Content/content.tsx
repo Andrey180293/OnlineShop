@@ -5,7 +5,6 @@ type PropsType = {
   products: [];
   cartItem: [];
 
-  addRemoveAmount: (item: object) => void;
   addToCart: (item: object) => void;
   setProductPage: (item: object) => void;
 };
@@ -27,9 +26,10 @@ const Content: FC<PropsType> = ({
       >
         <div className="row">
           {products &&
-            products.map((item: any) => {
+            products.map((item: any, key) => {
               return (
                 <CardItem
+                  key={key}
                   cartItem={
                     cartItem.filter(
                       (el: { id: number }) => el.id === item.id

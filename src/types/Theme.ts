@@ -2,7 +2,7 @@ export interface ThemeState {
   isThemToogle: boolean;
   theme: {};
   isLoad: boolean | null;
-  activeSidebarLink: number | false;
+  isActiveSidebarLink: number | false;
 }
 export enum ThemeActionTypes {
   TOGGLE_THEME = "TOGGLE_THEME",

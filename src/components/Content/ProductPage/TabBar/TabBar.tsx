@@ -13,7 +13,7 @@ type PropsType = {
   pageIndex: number;
 };
 const TabBar: FC<PropsType> = ({ page, pageIndex }) => {
-  const [activeTab, setActivTab] = useState(0);
+  const [activeTab, setActivTab] = useState<number>(0);
   return (
     <div className="page-container-right-description">
       <TabItems setActivTab={setActivTab} activeTab={activeTab} />
