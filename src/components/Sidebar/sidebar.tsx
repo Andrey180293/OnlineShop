@@ -12,7 +12,7 @@ const Sidebar: FC<PropsType> = ({ isActiveSidebarLink, SetPage, setProd }) => {
     <div>
       <div className="collection ">
         <NavLink
-          to={`/sidebar/${setProd(0)}`}
+          to={`/products/${setProd(0)}`}
           className={`collection-item  ${
             isActiveSidebarLink === 0 && " active"
           } `}
@@ -22,7 +22,7 @@ const Sidebar: FC<PropsType> = ({ isActiveSidebarLink, SetPage, setProd }) => {
           Мотоцикли
         </NavLink>
         <NavLink
-          to={`/sidebar/${setProd(1)}`}
+          to={`/products/${setProd(1)}`}
           className={`collection-item ${
             isActiveSidebarLink === 1 && "active"
           } `}
@@ -31,7 +31,7 @@ const Sidebar: FC<PropsType> = ({ isActiveSidebarLink, SetPage, setProd }) => {
           Телефони
         </NavLink>
         <NavLink
-          to={`/sidebar/${setProd(2)}`}
+          to={`/products/${setProd(2)}`}
           className={`collection-item ${
             isActiveSidebarLink === 2 && "active"
           } `}
@@ -40,7 +40,7 @@ const Sidebar: FC<PropsType> = ({ isActiveSidebarLink, SetPage, setProd }) => {
           Роботи-пилососи
         </NavLink>
         <NavLink
-          to={`/sidebar/${setProd(3)}`}
+          to={`/products/${setProd(3)}`}
           className={`collection-item  ${
             isActiveSidebarLink === 3 && "active"
           } `}

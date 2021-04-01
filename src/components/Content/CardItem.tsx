@@ -28,7 +28,7 @@ const CardItem: FC<PropsType> = ({
         <div className="card">
           <NavLink
             onClick={() => setProductPage(item)}
-            to={`/bar/${item.category}/${item.id}`}
+            to={`/product/${item.category}/${item.id}`}
           >
             <div
               className="card-image "

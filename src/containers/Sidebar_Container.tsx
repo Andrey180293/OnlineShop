@@ -13,7 +13,7 @@ import { setActiveSidebarLink, setLoad } from "../store/action-creators/theme";
 
 import { connect } from "react-redux";
 import Sidebar from "../components/Sidebar/sidebar";
-import SortComponent from "../components/Header/SortComponent";
+import SortComponent from "../components/Sidebar/SortComponent";
 import { compose } from "redux";
 import { StateType } from "../store/store";
 import { FC } from "react";

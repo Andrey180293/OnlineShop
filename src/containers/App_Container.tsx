@@ -13,11 +13,13 @@ import {
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { StateType } from "../store/store";
+import { Redirect } from "react-router";
 interface AppProps {
   theme: {
     contentBg: string;
     headFootBg: string;
   };
+  product: any;
   isThemToogle: boolean;
   toggleTheme: (isThemToogle: boolean) => void;
   setAllProducts: () => void;

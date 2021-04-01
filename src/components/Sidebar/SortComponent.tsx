@@ -19,7 +19,7 @@ const SortComponent: FC<PropsType> = ({ setFilter }) => {
           onClick={() => Sort("all")}
         >
           {" "}
-          all
+          Всі
         </li>
         <li
           className={`collection-item ${
@@ -27,7 +27,7 @@ const SortComponent: FC<PropsType> = ({ setFilter }) => {
           }`}
           onClick={() => Sort("price_hight")}
         >
-          price_hight
+          Ціна<i className="small material-icons">arrow_drop_up</i>
         </li>
         <li
           className={`collection-item ${
@@ -35,13 +35,15 @@ const SortComponent: FC<PropsType> = ({ setFilter }) => {
           } `}
           onClick={() => Sort("price_low")}
         >
-          price_low
+          {" "}
+          Ціна
+          <i className="small material-icons">arrow_drop_down</i>
         </li>
         <li
           className={`collection-item  ${activeLink === "name" && "active"} `}
           onClick={() => Sort("name")}
         >
-          Name
+          По назві
         </li>
       </ul>
     </div>

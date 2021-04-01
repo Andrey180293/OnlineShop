@@ -8,17 +8,17 @@ const TabItems: FC<PropsType> = ({ activeTab, setActivTab }) => {
   return (
     <ul className="tabItems ">
       <li
-        className={`tabItem  ${activeTab === 0 && "activeTab "} `}
+        className={`tabItem   ${activeTab === 0 && " activeTab"} `}
         onClick={() => setActivTab(0)}
       >
-        <span>Про товар</span>{" "}
+        <span>Характеристики</span>
       </li>
 
       <li
-        className={`tabItem   ${activeTab === 1 && " activeTab"} `}
+        className={`tabItem  ${activeTab === 1 && "activeTab "} `}
         onClick={() => setActivTab(1)}
       >
-        <span>Характеристики</span>
+        <span>Про товар</span>{" "}
       </li>
     </ul>
   );

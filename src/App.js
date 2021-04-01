@@ -10,7 +10,6 @@ import DropDown_Container from "./containers/DropDown_Container";
 
 const App = ({ theme, isThemToogle, toggleTheme }) => {
   const [isOpenMenu, toogleMenu] = useState(false);
-  const [visiblePopup, setVisiblePopup] = useState(false);
 
   return (
     <>
@@ -21,33 +20,19 @@ const App = ({ theme, isThemToogle, toggleTheme }) => {
           toggleTheme={toggleTheme}
           toogleMenu={toogleMenu}
           isOpenMenu={isOpenMenu}
-          setVisiblePopup={setVisiblePopup}
-          visiblePopup={visiblePopup}
         />
         <Sidebar_Container />
-        <DropDown_Container
-          toogleMenu={toogleMenu}
-          isOpenMenu={isOpenMenu}
-          setVisiblePopup={setVisiblePopup}
-          visiblePopup={visiblePopup}
-        />
+        <DropDown_Container toogleMenu={toogleMenu} isOpenMenu={isOpenMenu} />
         <div
           style={{
-            minHeight: "100vh",
+            minHeight: "70vh",
           }}
         >
-          <Route
-            exact
-            path="/"
-            render={() => <Content_Container visiblePopup={visiblePopup} />}
-          />
-          <Route
-            path="/sidebar/:prod"
-            render={() => <Content_Container visiblePopup={visiblePopup} />}
-          />
+          <Route exact path="/" render={() => <Content_Container />} />
+          <Route path="/products/:id" render={() => <Content_Container />} />
           <Route path="/cart" render={() => <Cart_Container />} />
           <Route
-            path="/bar/:product/:id"
+            path="/product/:category/:id"
             render={() => <Product_Page_Container />}
           />
         </div>

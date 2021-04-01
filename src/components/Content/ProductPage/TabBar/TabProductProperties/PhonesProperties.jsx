@@ -1,4 +1,4 @@
-const RobotsProperties = ({ page }) => {
+const PhonesProperties = ({ page }) => {
   return (
     <table>
       <tbody>
@@ -26,8 +26,20 @@ const RobotsProperties = ({ page }) => {
         </tr>
 
         <tr>
-          <td>Максимальний час роботи </td>
-          <th> {page.properties.maxTime} хв</th>
+          <td>Діагональ екрана</td>
+          <th> {page.properties.diagonal}</th>
+        </tr>
+        <tr>
+          <td>Оперативна пам'ять</td>
+          <th> {page.properties.operatingMemory}</th>
+        </tr>
+        <tr>
+          <td>Вбудована пам'ять</td>
+          <th> {page.properties.memory}</th>
+        </tr>
+        <tr>
+          <td>Операційна система</td>
+          <th> {page.properties.operatingSsystem}</th>
         </tr>
 
         <tr>
@@ -38,4 +50,4 @@ const RobotsProperties = ({ page }) => {
     </table>
   );
 };
-export default RobotsProperties;
+export default PhonesProperties;
