@@ -43,7 +43,7 @@ function productReducer(state = initialization, action: ProductAction) {
         product: action.payload,
       };
 
-    case ProductActionTypes.SET_QADROCOPTERS:
+    case ProductActionTypes.SET_QUDROCOPTERS:
       return {
         ...state,
         product: action.payload,
@@ -57,9 +57,9 @@ function productReducer(state = initialization, action: ProductAction) {
           (el: any) => el.id === action.payload.id && el
         ),
         pageIndex:
-          (action.payload.category === "motorcycle" && 1) ||
-          (action.payload.category === "phone" && 2) ||
-          (action.payload.category === "robot" && 3) ||
+          (action.payload.category === "motorcycles" && 1) ||
+          (action.payload.category === "phones" && 2) ||
+          (action.payload.category === "robots" && 3) ||
           (action.payload.category === "qudrocopters" && 4),
       };
 

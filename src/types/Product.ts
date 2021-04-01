@@ -12,7 +12,7 @@ export enum ProductActionTypes {
   SET_PRODUCT_PAGE = "SET_PRODUCT_PAGE",
   SET_PHONE = "SET_PHONE",
   SET_MOTORCYCLES = "SET_MOTORCYCLES",
-  SET_QADROCOPTERS = "SET_QADROCOPTERS",
+  SET_QUDROCOPTERS = "SET_QUDROCOPTERS",
   SET_ROBOTS = "SET_ROBOTS",
 }
 interface SetAllProductAction {
@@ -33,7 +33,7 @@ interface SetMotorcyclesAction {
 }
 
 interface SetQadricoptersAction {
-  type: ProductActionTypes.SET_QADROCOPTERS;
+  type: ProductActionTypes.SET_QUDROCOPTERS;
   payload: any;
 }
 interface SetRobotsAction {

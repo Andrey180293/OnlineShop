@@ -74,7 +74,7 @@ export const setQudrocopters = () => {
           items.push(doc.data());
         });
         dispatch({
-          type: ProductActionTypes.SET_QADROCOPTERS,
+          type: ProductActionTypes.SET_QUDROCOPTERS,
           payload: [...items],
         });
       });
