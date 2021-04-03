@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/OnlineShop/static/css/main.e3809b8c.chunk.css",
-    "main.js": "/OnlineShop/static/js/main.16edf204.chunk.js",
-    "main.js.map": "/OnlineShop/static/js/main.16edf204.chunk.js.map",
+    "main.js": "/OnlineShop/static/js/main.f36ed58d.chunk.js",
+    "main.js.map": "/OnlineShop/static/js/main.f36ed58d.chunk.js.map",
     "runtime-main.js": "/OnlineShop/static/js/runtime-main.fc016f94.js",
     "runtime-main.js.map": "/OnlineShop/static/js/runtime-main.fc016f94.js.map",
     "static/js/2.94ffef7f.chunk.js": "/OnlineShop/static/js/2.94ffef7f.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.fc016f94.js",
     "static/js/2.94ffef7f.chunk.js",
     "static/css/main.e3809b8c.chunk.css",
-    "static/js/main.16edf204.chunk.js"
+    "static/js/main.f36ed58d.chunk.js"
   ]
 }

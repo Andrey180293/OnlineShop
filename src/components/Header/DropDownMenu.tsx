@@ -29,25 +29,25 @@ const DropDownMenu: FC<PropsType> = ({
         <ul className={`dropdown_content ${!isdropDown && "hide"}`}>
           <li>
             <NavLink
-              to={`/sidebar/motorcycle`}
+              to={`/products/motorcycle`}
               onClick={() => closeDropMenu(0)}
             >
               Motorcycles
             </NavLink>
           </li>
           <li>
-            <NavLink to={`/sidebar/phone`} onClick={() => closeDropMenu(1)}>
+            <NavLink to={`/products/phone`} onClick={() => closeDropMenu(1)}>
               Phone
             </NavLink>
           </li>
           <li>
-            <NavLink to={`/sidebar/robot`} onClick={() => closeDropMenu(2)}>
+            <NavLink to={`/products/robot`} onClick={() => closeDropMenu(2)}>
               Robot
             </NavLink>
           </li>
           <li>
             <NavLink
-              to={`/sidebar/qudrocopters`}
+              to={`/products/qudrocopters`}
               onClick={() => closeDropMenu(3)}
             >
               keadro

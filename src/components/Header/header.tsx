@@ -32,7 +32,7 @@ const Header: FC<PropsType> = ({
           style={{ marginLeft: "40px" }}
           onClick={() => SetPage()}
         >
-          Logo
+          Shop
         </NavLink>
 
         <a href="#" data-target="mobile-demo" className="sidenav-trigger">

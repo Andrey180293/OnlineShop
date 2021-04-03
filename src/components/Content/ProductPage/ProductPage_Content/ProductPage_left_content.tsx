@@ -14,6 +14,7 @@ const ProductPage_left_content: FC<PropsType> = ({ page }) => {
       {page.img.map((el, i) => {
         return (
           <div
+            key={i}
             className={`page-container-img ${i !== activeImg && "hide"} `}
             style={{
               background: `url(${
@@ -50,6 +51,7 @@ const ProductPage_left_content: FC<PropsType> = ({ page }) => {
         {page.img.map((el, i) => {
           return (
             <div
+              key={i}
               style={{
                 margin: "0 5px",
                 width: "50px",
