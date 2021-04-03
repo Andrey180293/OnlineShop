@@ -18,7 +18,7 @@ const Cart_left_content: FC<PropsType> = ({ item, setProductPage }) => {
     <div className="productCart-left">
       <div className="productCart-left-img">
         <NavLink
-          to={`/bar/${item.category}/${item.id}`}
+          to={`/product/${item.category}/${item.id}`}
           onClick={() => setProductPage(item)}
         >
           <img src={item.img[0]} alt="none" />{" "}
