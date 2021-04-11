@@ -13,7 +13,15 @@ const Sidebar: FC<PropsType> = ({
   sidebarMenuArray,
 }) => {
   return (
-    <div className="collection ">
+    <div
+      className="collection "
+      style={{
+        position: "fixed",
+        zIndex: 111,
+        marginTop: "70px",
+        width: "15%",
+      }}
+    >
       {sidebarMenuArray &&
         sidebarMenuArray.map((item) => {
           return (

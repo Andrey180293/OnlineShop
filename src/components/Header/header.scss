@@ -1,10 +1,17 @@
 .burger {
-  background-color: rgb(24, 80, 102);
+  margin-top: 70px;
+  max-width: 350px;
+  z-index: 1000;
+  position: absolute;
+  opacity: 0.9;
+  background-color: rgb(25, 41, 61);
   display: flex;
   flex-direction: column;
   width: 100%;
   transform: translateX(0);
-  transition: all 3s;
+  transition: all 1s;
+  color: #fff;
+  font-size: 1.2em;
   .item {
     cursor: pointer;
     min-height: 50px;
@@ -13,8 +20,11 @@
     border-top: black solid 1px;
     padding: 5px 10px;
     &:hover {
+      color: rgb(16, 16, 17);
+      transform: translateX(0);
+      transition: all 2s;
       background-color: #fff;
-      opacity: 0.5;
+      opacity: 1;
     }
     div {
       width: inherit;
@@ -33,14 +43,14 @@
       }
     }
     &:hover {
-      background-color: rgb(20, 83, 107);
+      background-color: rgb(255, 255, 255);
 
       opacity: 1;
     }
     height: 100%;
     li {
       &:hover {
-        background-color: rgb(129, 31, 31);
+        background-color: rgb(46, 45, 63);
 
         opacity: 1;
       }
@@ -60,4 +70,8 @@
       opacity: 0.5;
     }
   }
+}
+.nav-extended {
+  position: fixed;
+  z-index: 1111;
 }

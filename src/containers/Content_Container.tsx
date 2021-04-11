@@ -52,6 +52,7 @@ function Content_Container({
   if (isLoading === false) return <Preloader />;
   return (
     <Content
+      isLoading={isLoading}
       setProductPage={setPage}
       addToCart={addToCart}
       cartItem={cartItem}

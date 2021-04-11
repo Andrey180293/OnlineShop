@@ -12,7 +12,14 @@ const SortComponent: FC<PropsType> = ({ setFilter }) => {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        position: "fixed",
+        zIndex: 111,
+        marginTop: "270px",
+        width: "15%",
+      }}
+    >
       <ul className="collection " style={{ cursor: "pointer" }}>
         <li
           className={`collection-item  ${activeLink === "all" && " active"} `}

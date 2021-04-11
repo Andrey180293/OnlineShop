@@ -1,9 +1,11 @@
 import CardItem from "./CardItem";
 import { FC } from "react";
+import Preloader from "../../commons/Preloader";
 
 type PropsType = {
   products: [];
   cartItem: [];
+  isLoading: boolean;
 
   addToCart: (item: object) => void;
   setProductPage: (item: object) => void;
@@ -13,7 +15,9 @@ const Content: FC<PropsType> = ({
   setProductPage,
   addToCart,
   cartItem,
+  isLoading,
 }) => {
+  if (isLoading === false) return <Preloader />;
   return (
     <>
       {" "}
@@ -22,6 +26,7 @@ const Content: FC<PropsType> = ({
         style={{
           minHeight: "100vh",
           padding: "30px 20px",
+          marginTop: "40px",
         }}
       >
         <div className="row">

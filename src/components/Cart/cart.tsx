@@ -18,7 +18,12 @@ const Cart: FC<PropsType> = ({
 }) => {
   return (
     <div className="productCart  ">
-      <div className=" col s12 m12  l10 ">
+      <div
+        className=" col s12 m12  l10 "
+        style={{
+          marginTop: "70px",
+        }}
+      >
         {cartItems &&
           cartItems.map((item, key) => {
             return (
