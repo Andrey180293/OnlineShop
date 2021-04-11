@@ -1,14 +1,8 @@
 import { useEffect } from "react";
 import App from "../App";
 import "../App.scss";
-import { toggleTheme, setLoad } from "../store/action-creators/theme";
-import {
-  setAllProducts,
-  setPhones,
-  setMotorcycles,
-  setQudrocopters,
-  setRobots,
-} from "../store/action-creators/product";
+import { toggleTheme } from "../store/action-creators/theme";
+import { getAllProducts } from "../store/action-creators/product";
 
 import { connect } from "react-redux";
 import { compose } from "redux";
@@ -21,36 +15,17 @@ interface AppProps {
   product: any;
   isThemToogle: boolean;
   toggleTheme: (isThemToogle: boolean) => void;
-  setAllProducts: () => void;
-  setMotorcycles: () => void;
-  setPhones: () => void;
-  setRobots: () => void;
-  setQudrocopters: () => void;
-  setLoad: (isLoad: boolean) => void;
+  getAllProducts: () => void;
 }
 const AppContainer = ({
   isThemToogle,
   theme,
   toggleTheme,
-  setAllProducts,
-  setPhones,
-  setMotorcycles,
-  setQudrocopters,
-  setRobots,
-  setLoad,
+
+  getAllProducts,
 }: AppProps) => {
   useEffect(() => {
-    async function anyNameFunction() {
-      await setLoad(false);
-
-      await setRobots();
-      await setPhones();
-      await setMotorcycles();
-      await setQudrocopters();
-      setAllProducts();
-      setLoad(true);
-    }
-    anyNameFunction();
+    getAllProducts();
   }, []);
 
   return (
@@ -68,11 +43,7 @@ const mapStateToProps = (state: StateType) => {
 export default compose<StateType>(
   connect(mapStateToProps, {
     toggleTheme,
-    setAllProducts,
-    setPhones,
-    setMotorcycles,
-    setQudrocopters,
-    setRobots,
-    setLoad,
+
+    getAllProducts,
   })
 )(AppContainer);

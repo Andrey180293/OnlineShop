@@ -6,7 +6,7 @@ import Preloader from "../commons/Preloader";
 import { StateType } from "../store/store";
 import { compose } from "redux";
 interface PageProps {
-  isLoad: boolean;
+  isLoading: boolean;
   pageIndex: number;
   page: any;
   cartItem: Array<object>;
@@ -16,10 +16,10 @@ function Product_Page_Container({
   page,
   cartItem,
   addToCart,
-  isLoad,
+  isLoading,
   pageIndex,
 }: PageProps) {
-  if (isLoad === false) return <Preloader />;
+  if (isLoading === false) return <Preloader />;
   return (
     <ProductPage
       pageIndex={pageIndex}
@@ -38,9 +38,9 @@ const mapStateToProps = (state: StateType) => {
     page: state.product.page,
     // @ts-ignore
     pageIndex: state.product.pageIndex,
-
+    // @ts-ignore
+    isLoading: state.product.isLoading,
     cartItem: state.cart.items,
-    isLoad: state.theme.isLoad,
   };
 };
 

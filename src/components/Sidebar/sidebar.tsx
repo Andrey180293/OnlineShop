@@ -1,54 +1,35 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import { NavLink } from "react-router-dom";
 
 type PropsType = {
   isActiveSidebarLink: number | false;
-  SetPage: (n: number) => void;
-  setProd: (n: number) => any;
+  SetPage: (n: number, link: string) => void;
+  sidebarMenuArray: any[];
 };
 
-const Sidebar: FC<PropsType> = ({ isActiveSidebarLink, SetPage, setProd }) => {
+const Sidebar: FC<PropsType> = ({
+  isActiveSidebarLink,
+  SetPage,
+  sidebarMenuArray,
+}) => {
   return (
-    <div>
-      <div className="collection ">
-        <NavLink
-          to={`/products/${setProd(0)}`}
-          className={`collection-item  ${
-            isActiveSidebarLink === 0 && " active"
-          } `}
-          onClick={(e) => SetPage(0)}
-        >
-          {" "}
-          Мотоцикли
-        </NavLink>
-        <NavLink
-          to={`/products/${setProd(1)}`}
-          className={`collection-item ${
-            isActiveSidebarLink === 1 && "active"
-          } `}
-          onClick={(e) => SetPage(1)}
-        >
-          Телефони
-        </NavLink>
-        <NavLink
-          to={`/products/${setProd(2)}`}
-          className={`collection-item ${
-            isActiveSidebarLink === 2 && "active"
-          } `}
-          onClick={(e) => SetPage(2)}
-        >
-          Роботи-пилососи
-        </NavLink>
-        <NavLink
-          to={`/products/${setProd(3)}`}
-          className={`collection-item  ${
-            isActiveSidebarLink === 3 && "active"
-          } `}
-          onClick={() => SetPage(3)}
-        >
-          Квадрокоптери
-        </NavLink>
-      </div>
+    <div className="collection ">
+      {sidebarMenuArray &&
+        sidebarMenuArray.map((item) => {
+          return (
+            <NavLink
+              key={item.name + item.number}
+              to={`/products/${item.link}`}
+              className={`collection-item  ${
+                isActiveSidebarLink === item.number && " active"
+              } `}
+              onClick={() => SetPage(item.number, item.link)}
+            >
+              {" "}
+              {item.name}
+            </NavLink>
+          );
+        })}
     </div>
   );
 };

@@ -12,71 +12,88 @@ export const setProductPage = (payload: ProductAction) => ({
   payload,
 });
 
-export const setPhones = () => {
-  return async (dispatch: Dispatch<ProductAction>) => {
-    await db
-      .collection("phones")
-      .get()
-      .then((querySnapshot) => {
-        let items: any = [];
-        querySnapshot.forEach((doc) => {
-          items.push(doc.data());
-        });
-        dispatch({ type: ProductActionTypes.SET_PHONE, payload: [...items] });
-      });
-  };
-};
+export const setLoad = (payload: boolean) => ({
+  type: ProductActionTypes.SET_LOAD,
+  payload,
+});
 
-export const setMotorcycles = () => {
+export const getProducts = (link: string) => {
+  const items: any = [];
   return async (dispatch: Dispatch<ProductAction>) => {
+    dispatch({ type: ProductActionTypes.SET_LOAD, payload: false });
+
     await db
-      .collection("motorcycles")
+      .collection(`${link}`)
       .get()
       .then((querySnapshot) => {
-        let items: any = [];
         querySnapshot.forEach((doc) => {
           items.push(doc.data());
         });
         dispatch({
-          type: ProductActionTypes.SET_MOTORCYCLES,
+          type: ProductActionTypes.SET_PRODUCTS,
           payload: [...items],
         });
       });
+    dispatch({ type: ProductActionTypes.SET_LOAD, payload: true });
+    return [...items];
   };
 };
 
-export const setRobots = () => {
+export const getAllProducts = () => {
   return async (dispatch: Dispatch<ProductAction>) => {
-    await db
-      .collection("robots")
+    dispatch({ type: ProductActionTypes.SET_LOAD, payload: false });
+    const motorcyclesArr = await db
+      .collection(`motorcycles`)
       .get()
       .then((querySnapshot) => {
-        let items: any = [];
+        const items: any = [];
         querySnapshot.forEach((doc) => {
           items.push(doc.data());
         });
-        dispatch({
-          type: ProductActionTypes.SET_ROBOTS,
-          payload: [...items],
-        });
+        return [...items];
       });
-  };
-};
 
-export const setQudrocopters = () => {
-  return async (dispatch: Dispatch<ProductAction>) => {
-    await db
-      .collection("qudrocopters")
+    const phonesArr = await db
+      .collection(`phones`)
       .get()
       .then((querySnapshot) => {
-        let items: any = [];
+        const items: any = [];
         querySnapshot.forEach((doc) => {
           items.push(doc.data());
         });
-        dispatch({
-          type: ProductActionTypes.SET_QUDROCOPTERS,
-          payload: [...items],
-        });
+        return [...items];
       });
+
+    const robotsArr = await db
+      .collection(`robots`)
+      .get()
+      .then((querySnapshot) => {
+        const items: any = [];
+        querySnapshot.forEach((doc) => {
+          items.push(doc.data());
+        });
+        return [...items];
+      });
+
+    const quarocoptersArr = await db
+      .collection(`qudrocopters`)
+      .get()
+      .then((querySnapshot) => {
+        const items: any = [];
+        querySnapshot.forEach((doc) => {
+          items.push(doc.data());
+        });
+        return [...items];
+      });
+    dispatch({
+      type: ProductActionTypes.SET_PRODUCTS,
+      payload: [
+        ...motorcyclesArr,
+        ...robotsArr,
+        ...phonesArr,
+        ...quarocoptersArr,
+      ],
+    });
+    dispatch({ type: ProductActionTypes.SET_LOAD, payload: true });
   };
 };

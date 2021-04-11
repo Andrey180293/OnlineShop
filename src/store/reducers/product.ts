@@ -3,12 +3,9 @@ import { ProductState } from "../../types/Product";
 
 const initialization: ProductState = {
   product: [],
-  phones: null,
-  motorcycles: null,
-  quadrocopters: null,
-  robots: null,
   page: null,
   pageIndex: 0,
+  isLoading: false,
 };
 
 function productReducer(state = initialization, action: ProductAction) {
@@ -16,38 +13,17 @@ function productReducer(state = initialization, action: ProductAction) {
     case ProductActionTypes.SET_ALL_PRODUCT:
       return {
         ...state,
-        product: [
-          ...state.phones,
-          ...state.motorcycles,
-          ...state.quadrocopters,
-          ...state.robots,
-        ],
+        product: [],
       };
-    case ProductActionTypes.SET_MOTORCYCLES:
+    case ProductActionTypes.SET_PRODUCTS:
       return {
         ...state,
         product: action.payload,
-        motorcycles: action.payload,
       };
-    case ProductActionTypes.SET_PHONE:
+    case ProductActionTypes.SET_LOAD:
       return {
         ...state,
-        phones: action.payload,
-        product: action.payload,
-      };
-
-    case ProductActionTypes.SET_ROBOTS:
-      return {
-        ...state,
-        robots: action.payload,
-        product: action.payload,
-      };
-
-    case ProductActionTypes.SET_QUDROCOPTERS:
-      return {
-        ...state,
-        product: action.payload,
-        quadrocopters: action.payload,
+        isLoading: action.payload,
       };
 
     case ProductActionTypes.SET_PRODUCT_PAGE:

@@ -1,10 +1,5 @@
 import "../App.scss";
-import {
-  setMotorcycles,
-  setPhones,
-  setRobots,
-  setQudrocopters,
-} from "../store/action-creators/product";
+import { getProducts } from "../store/action-creators/product";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import DropDownMenu from "../components/Header/DropDownMenu";
@@ -18,10 +13,7 @@ interface DropDownProps {
 
   setVisiblePopup: (visiblePopup: boolean) => void;
   toogleMenu: (isOpenMenu: boolean) => void;
-  setMotorcycles: () => void;
-  setPhones: () => void;
-  setRobots: () => void;
-  setQudrocopters: () => void;
+  getProducts: (link: string) => void;
 }
 
 const DropDown_Container = ({
@@ -30,25 +22,16 @@ const DropDown_Container = ({
   isOpenMenu,
   setVisiblePopup,
   toogleMenu,
-  setMotorcycles,
-  setPhones,
-  setRobots,
-  setQudrocopters,
+  getProducts,
 }: DropDownProps) => {
   const [isdropDown, togleDropDown] = useState<boolean>(false);
-  const setActionType = (i: number | null) => {
-    if (i === 0) return setMotorcycles();
-    if (i === 1) return setPhones();
-    if (i === 2) return setRobots();
-    if (i === 3) return setQudrocopters();
-  };
 
-  const closeDropMenu = (n: number | null) => {
+  const closeDropMenu = (n: number | null, link: string) => {
     toogleMenu(!isOpenMenu);
     if (n === null) {
       setVisiblePopup(!visiblePopup);
     }
-    setActionType(n);
+    getProducts(link);
   };
 
   return (
@@ -70,9 +53,6 @@ const mapStateToProps = (state: StateType) => {
 };
 export default compose<StateType>(
   connect(mapStateToProps, {
-    setMotorcycles,
-    setPhones,
-    setRobots,
-    setQudrocopters,
+    getProducts,
   })
 )(DropDown_Container);

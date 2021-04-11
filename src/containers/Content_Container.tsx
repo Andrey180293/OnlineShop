@@ -1,6 +1,5 @@
 import "../App.scss";
 import { setProductPage } from "../store/action-creators/product";
-import { setLoad } from "../store/action-creators/theme";
 
 import { addToCart } from "../store/action-creators/cart";
 
@@ -11,10 +10,9 @@ import { StateType } from "../store/store";
 import { compose } from "redux";
 interface ContentProps {
   byFilter: string;
-  isLoad: boolean;
+  isLoading: boolean;
   products: [];
   cartItem: [];
-  setLoad: (isLoad: boolean) => void;
   addToCart: (item: object) => void;
   setProductPage: (item: object) => void;
 }
@@ -22,10 +20,9 @@ function Content_Container({
   products,
   cartItem,
   byFilter,
-  isLoad,
+  isLoading,
   setProductPage,
   addToCart,
-  setLoad,
 }: ContentProps) {
   const sortBy = (products: Array<object>, byFilter: string) => {
     switch (byFilter) {
@@ -49,12 +46,10 @@ function Content_Container({
   //console.log(isLoad);
 
   const setPage = (item: object) => {
-    setLoad(false);
     setProductPage(item);
-    setLoad(true);
   };
 
-  if (isLoad === false) return <Preloader />;
+  if (isLoading === false) return <Preloader />;
   return (
     <Content
       setProductPage={setPage}
@@ -70,19 +65,19 @@ const mapStateToProps = (state: StateType) => {
   return {
     theme: state.theme.theme,
     isThemToogle: state.theme.isThemToogle,
-    isLoad: state.theme.isLoad,
     byFilter: state.filter.byFilter,
 
     cartItem: state.cart.items,
     // @ts-ignore
     products: state.product.product,
+    // @ts-ignore
+    isLoading: state.product.isLoading,
   };
 };
 
 export default compose<StateType>(
   connect(mapStateToProps, {
     setProductPage,
-    setLoad,
     addToCart,
   })
 )(Content_Container);

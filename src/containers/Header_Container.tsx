@@ -2,9 +2,8 @@ import "../App.scss";
 import {
   toggleTheme,
   setActiveSidebarLink,
-  setLoad,
 } from "../store/action-creators/theme";
-import { setAllProducts } from "../store/action-creators/product";
+import { getAllProducts } from "../store/action-creators/product";
 
 import { connect } from "react-redux";
 import Header from "../components/Header/header";
@@ -22,8 +21,7 @@ interface HeaderProps {
   toogleMenu: (isOpenMenu: boolean) => void;
   setVisiblePopup: (visiblePopup: boolean) => void;
   setHeaderNavContent: (visibleHeadNavContent: boolean) => void;
-  setAllProducts: () => void;
-  setLoad: (isLoad: boolean) => void;
+  getAllProducts: () => void;
   setActiveSidebarLink: (isActive: boolean) => void;
 }
 
@@ -37,16 +35,11 @@ const Header_Container = ({
   toggleTheme,
   toogleMenu,
   setVisiblePopup,
-  setAllProducts,
-
-  setLoad,
+  getAllProducts,
 }: HeaderProps) => {
-  const SetPage = async () => {
-    setLoad(false);
-    setAllProducts();
-    await setActiveSidebarLink(false);
-
-    setLoad(true);
+  const SetPage = () => {
+    getAllProducts();
+    setActiveSidebarLink(false);
   };
 
   return (
@@ -76,8 +69,7 @@ const mapStateToProps = (state: StateType) => {
 export default compose<StateType>(
   connect(mapStateToProps, {
     toggleTheme,
-    setLoad,
-    setAllProducts,
+    getAllProducts,
     setActiveSidebarLink,
   })
 )(Header_Container);
