@@ -1,6 +1,6 @@
 import { ProductActionTypes, ProductAction } from "./../../types/Product";
 
-import { db, auth } from "../../servises/firebase";
+import { db } from "../../servises/firebase";
 import { Dispatch } from "redux";
 
 export const setAllProducts = () => ({
