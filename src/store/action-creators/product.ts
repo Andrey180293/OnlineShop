@@ -18,82 +18,54 @@ export const setLoad = (payload: boolean) => ({
 });
 
 export const getProducts = (link: string) => {
-  const items: any = [];
   return async (dispatch: Dispatch<ProductAction>) => {
     dispatch({ type: ProductActionTypes.SET_LOAD, payload: false });
 
-    await db
-      .collection(`${link}`)
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          items.push(doc.data());
-        });
-        dispatch({
-          type: ProductActionTypes.SET_PRODUCTS,
-          payload: [...items],
-        });
-      });
+    let response = await fetch(
+      `https://radiant-ravine-14822.herokuapp.com/api/products/${link}`,
+      {
+        //  params:'link',
+      }
+    );
+    let data = await response.json();
+
+    dispatch({
+      type: ProductActionTypes.SET_PRODUCTS,
+      payload: data.data,
+    });
+
     dispatch({ type: ProductActionTypes.SET_LOAD, payload: true });
-    return [...items];
+    return data;
   };
 };
 
-export const getAllProducts = () => {
+export const setOrder = (item: object) => {
   return async (dispatch: Dispatch<ProductAction>) => {
     dispatch({ type: ProductActionTypes.SET_LOAD, payload: false });
-    const motorcyclesArr = await db
-      .collection(`motorcycles`)
-      .get()
-      .then((querySnapshot) => {
-        const items: any = [];
-        querySnapshot.forEach((doc) => {
-          items.push(doc.data());
-        });
-        return [...items];
-      });
+    let response = await fetch(
+      `https://radiant-ravine-14822.herokuapp.com/api/cart`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          ...item,
+          email: "andrey@lba.ru",
+          adress: "lopushanka",
+          name: "Andrey",
+          phoneNumber: 12345678,
+          data: item,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
-    const phonesArr = await db
-      .collection(`phones`)
-      .get()
-      .then((querySnapshot) => {
-        const items: any = [];
-        querySnapshot.forEach((doc) => {
-          items.push(doc.data());
-        });
-        return [...items];
-      });
-
-    const robotsArr = await db
-      .collection(`robots`)
-      .get()
-      .then((querySnapshot) => {
-        const items: any = [];
-        querySnapshot.forEach((doc) => {
-          items.push(doc.data());
-        });
-        return [...items];
-      });
-
-    const quarocoptersArr = await db
-      .collection(`qudrocopters`)
-      .get()
-      .then((querySnapshot) => {
-        const items: any = [];
-        querySnapshot.forEach((doc) => {
-          items.push(doc.data());
-        });
-        return [...items];
-      });
-    dispatch({
-      type: ProductActionTypes.SET_PRODUCTS,
-      payload: [
-        ...motorcyclesArr,
-        ...robotsArr,
-        ...phonesArr,
-        ...quarocoptersArr,
-      ],
-    });
+    let data = await response.json();
+    console.log(data.message);
     dispatch({ type: ProductActionTypes.SET_LOAD, payload: true });
+
+    //dispatch(getProducts(item.category));
+    //dispatch(  setSnackBarMessage({ message: data.message, status: data.status })    );
+    // dispatch(setOpenSnackBar(true));
   };
 };

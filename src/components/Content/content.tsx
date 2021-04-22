@@ -37,7 +37,7 @@ const Content: FC<PropsType> = ({
                   key={key}
                   cartItem={
                     cartItem.filter(
-                      (el: { id: number }) => el.id === item.id
+                      (el: { _id: string }) => el._id === item._id
                     )[0]
                   }
                   addToCart={addToCart}

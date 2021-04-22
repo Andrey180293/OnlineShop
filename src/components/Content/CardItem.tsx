@@ -3,11 +3,11 @@ import { FC } from "react";
 
 type PropsType = {
   cartItem: {
-    id: number;
+    _id: string;
   };
   item: {
     category: string;
-    id: number;
+    _id: string;
     img: string;
     name: string;
     price: number;
@@ -28,7 +28,7 @@ const CardItem: FC<PropsType> = ({
         <div className="card">
           <NavLink
             onClick={() => setProductPage(item)}
-            to={`/product/${item.category}/${item.id}`}
+            to={`/product/${item.category}/${item._id}`}
           >
             <div
               className="card-image "
@@ -47,7 +47,7 @@ const CardItem: FC<PropsType> = ({
 
           <div className="card-action">
             <p>price {item.price}</p>
-            {!cartItem || cartItem.id !== item.id ? (
+            {!cartItem || cartItem._id !== item._id ? (
               <div
                 className="btn waves-effect teal lighten-2 "
                 onClick={() => addToCart(item)}

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import App from "../App";
 import "../App.scss";
 import { toggleTheme } from "../store/action-creators/theme";
-import { getAllProducts } from "../store/action-creators/product";
+import { getProducts } from "../store/action-creators/product";
 
 import { connect } from "react-redux";
 import { compose } from "redux";
@@ -15,17 +15,17 @@ interface AppProps {
   product: any;
   isThemToogle: boolean;
   toggleTheme: (isThemToogle: boolean) => void;
-  getAllProducts: () => void;
+  getProducts: (link: string) => void;
 }
 const AppContainer = ({
   isThemToogle,
   theme,
   toggleTheme,
 
-  getAllProducts,
+  getProducts,
 }: AppProps) => {
   useEffect(() => {
-    getAllProducts();
+    getProducts("");
   }, []);
 
   return (
@@ -44,6 +44,6 @@ export default compose<StateType>(
   connect(mapStateToProps, {
     toggleTheme,
 
-    getAllProducts,
+    getProducts,
   })
 )(AppContainer);

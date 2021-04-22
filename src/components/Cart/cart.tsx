@@ -5,9 +5,11 @@ import Cart_right_content from "./Cart_Content/cart_right_content";
 
 type PropsType = {
   cartItems: any[];
+
   addRemoveAmount: (item: object) => void;
   removeFromCart: (item: object) => void;
   setProductPage: (item: object) => void;
+  toOrder: (item: object) => void;
 };
 
 const Cart: FC<PropsType> = ({
@@ -15,6 +17,7 @@ const Cart: FC<PropsType> = ({
   addRemoveAmount,
   removeFromCart,
   setProductPage,
+  toOrder,
 }) => {
   return (
     <div className="productCart  ">
@@ -57,7 +60,9 @@ const Cart: FC<PropsType> = ({
               {cartItems.reduce((acc, el) => acc + el.amount * el.price, 0)}грн
             </span>
           </div>
-          <div className="checkout">Оформити </div>
+          <div className="checkout" onClick={() => toOrder(cartItems)}>
+            Оформити{" "}
+          </div>
         </div>
       </div>
     </div>

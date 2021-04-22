@@ -1,7 +1,12 @@
 import "../App.scss";
 import { Redirect } from "react-router-dom";
-import { setProductPage } from "../store/action-creators/product";
-import { addRemoveAmount, removeFromCart } from "../store/action-creators/cart";
+
+import { setProductPage, setOrder } from "../store/action-creators/product";
+import {
+  addRemoveAmount,
+  removeFromCart,
+  clearCart,
+} from "../store/action-creators/cart";
 
 import { connect } from "react-redux";
 import Cart from "../components/Cart/cart";
@@ -13,6 +18,8 @@ interface CartProps {
   addRemoveAmount: (item: object) => void;
   removeFromCart: (item: object) => void;
   setProductPage: (item: object) => void;
+  setOrder: (item: object) => void;
+  clearCart: () => void;
 }
 
 const Cart_Container = ({
@@ -20,14 +27,25 @@ const Cart_Container = ({
   addRemoveAmount,
   removeFromCart,
   setProductPage,
+  setOrder,
+  clearCart,
 }: CartProps) => {
+  const toOrder = (item: object) => {
+    setOrder(item);
+    clearCart();
+  };
+
   if (cartItems.length === 0) return <Redirect to="/" />;
   return (
     <Cart
       addRemoveAmount={addRemoveAmount}
-      cartItems={cartItems.sort((a: any, b: any) => a.id - b.id)}
+      cartItems={cartItems.sort(
+        (a: any, b: any) =>
+          +a._id.replace(/\D/g, "") - +b._id.replace(/\D/g, "")
+      )}
       removeFromCart={removeFromCart}
       setProductPage={setProductPage}
+      toOrder={toOrder}
     />
   );
 };
@@ -47,5 +65,7 @@ export default compose<StateType>(
     removeFromCart,
     addRemoveAmount,
     setProductPage,
+    setOrder,
+    clearCart,
   })
 )(Cart_Container);

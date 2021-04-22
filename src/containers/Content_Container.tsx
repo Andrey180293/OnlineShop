@@ -28,7 +28,8 @@ function Content_Container({
     switch (byFilter) {
       case "all":
         return (
-          products && products.sort((a: any, b: any) => (a.id > b.id ? 1 : -1))
+          products &&
+          products.sort((a: any, b: any) => (a._id > b._id ? 1 : -1))
         );
 
       case "price_low":

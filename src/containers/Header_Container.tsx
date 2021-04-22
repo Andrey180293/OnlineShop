@@ -3,7 +3,7 @@ import {
   toggleTheme,
   setActiveSidebarLink,
 } from "../store/action-creators/theme";
-import { getAllProducts } from "../store/action-creators/product";
+import { getProducts } from "../store/action-creators/product";
 
 import { connect } from "react-redux";
 import Header from "../components/Header/header";
@@ -21,7 +21,7 @@ interface HeaderProps {
   toogleMenu: (isOpenMenu: boolean) => void;
   setVisiblePopup: (visiblePopup: boolean) => void;
   setHeaderNavContent: (visibleHeadNavContent: boolean) => void;
-  getAllProducts: () => void;
+  getProducts: (link: string) => void;
   setActiveSidebarLink: (isActive: boolean) => void;
 }
 
@@ -35,10 +35,10 @@ const Header_Container = ({
   toggleTheme,
   toogleMenu,
   setVisiblePopup,
-  getAllProducts,
+  getProducts,
 }: HeaderProps) => {
   const SetPage = () => {
-    getAllProducts();
+    getProducts("");
     setActiveSidebarLink(false);
   };
 
@@ -69,7 +69,7 @@ const mapStateToProps = (state: StateType) => {
 export default compose<StateType>(
   connect(mapStateToProps, {
     toggleTheme,
-    getAllProducts,
+    getProducts,
     setActiveSidebarLink,
   })
 )(Header_Container);

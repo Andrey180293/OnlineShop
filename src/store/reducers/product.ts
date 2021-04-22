@@ -30,7 +30,7 @@ function productReducer(state = initialization, action: ProductAction) {
       return {
         ...state,
         page: state.product.filter(
-          (el: any) => el.id === action.payload.id && el
+          (el: any) => el._id === action.payload._id && el
         ),
         pageIndex:
           (action.payload.category === "motorcycles" && 1) ||

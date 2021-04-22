@@ -25,7 +25,7 @@ function Product_Page_Container({
       pageIndex={pageIndex}
       addToCart={addToCart}
       page={page[0]}
-      cartItem={cartItem.filter((el: any) => el.id === page[0].id)[0]}
+      cartItem={cartItem.filter((el: any) => el._id === page[0]._id)[0]}
     />
   );
 }

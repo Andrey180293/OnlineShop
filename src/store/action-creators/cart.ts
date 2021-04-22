@@ -17,3 +17,7 @@ export const setPriceMinus = (payload: CartAction) => ({
   type: CartActionTypes.SET_PRICE_MINUS,
   payload,
 });
+
+export const clearCart = () => ({
+  type: CartActionTypes.CLEAR_CART,
+});
