@@ -6,7 +6,7 @@ import {
   addRemoveAmount,
   removeFromCart,
   clearCart,
-} from "../store/action-creators/cart";
+} from "../../src/store/action-creators/cart";
 
 import { connect } from "react-redux";
 import Cart from "../components/Cart/cart";
