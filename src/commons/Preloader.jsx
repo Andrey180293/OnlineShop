@@ -3,6 +3,7 @@ const Preloader = () => {
     <div
       style={{
         padding: "30vh 30%",
+        minHeight: "85vh",
       }}
     >
       <div className="progress" style={{ height: "5px", width: "100%" }}>

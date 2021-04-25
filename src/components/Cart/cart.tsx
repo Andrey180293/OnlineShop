@@ -1,11 +1,11 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import "./cart.scss";
 import Cart_left_content from "./Cart_Content/cart_left_content";
 import Cart_right_content from "./Cart_Content/cart_right_content";
+import FormOrder from "./FormOrder";
 
 type PropsType = {
   cartItems: any[];
-
   addRemoveAmount: (item: object) => void;
   removeFromCart: (item: object) => void;
   setProductPage: (item: object) => void;
@@ -19,6 +19,12 @@ const Cart: FC<PropsType> = ({
   setProductPage,
   toOrder,
 }) => {
+  const [isOpenFormOrder, setOpenFormOrder] = useState(false);
+  let totalPrice =
+    cartItems.reduce((acc, el) => acc + el.amount * el.price, 0) || 0;
+  useEffect(() => {
+    window.scrollTo(10, 0);
+  }, [isOpenFormOrder]);
   return (
     <div className="productCart  ">
       <div
@@ -27,6 +33,15 @@ const Cart: FC<PropsType> = ({
           marginTop: "70px",
         }}
       >
+        {isOpenFormOrder && (
+          <FormOrder
+            toOrder={toOrder}
+            cartItems={cartItems}
+            setOpenFormOrder={setOpenFormOrder}
+            totalPrice={totalPrice}
+          />
+        )}
+
         {cartItems &&
           cartItems.map((item, key) => {
             return (
@@ -57,10 +72,11 @@ const Cart: FC<PropsType> = ({
           <div className="total-price">
             Total
             <span>
-              {cartItems.reduce((acc, el) => acc + el.amount * el.price, 0)}грн
+              {totalPrice}
+              грн
             </span>
           </div>
-          <div className="checkout" onClick={() => toOrder(cartItems)}>
+          <div className="checkout" onClick={() => setOpenFormOrder(true)}>
             Оформити{" "}
           </div>
         </div>

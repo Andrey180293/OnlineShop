@@ -6,6 +6,8 @@ const initialization: ProductState = {
   page: null,
   pageIndex: 0,
   isLoading: false,
+  snackbarMessage: null,
+  isOpenSnackBar: false,
 };
 
 function productReducer(state = initialization, action: ProductAction) {
@@ -38,7 +40,16 @@ function productReducer(state = initialization, action: ProductAction) {
           (action.payload.category === "robots" && 3) ||
           (action.payload.category === "qudrocopters" && 4),
       };
-
+    case ProductActionTypes.SET_OPEN_SNACKBAR:
+      return {
+        ...state,
+        isOpenSnackBar: action.payload,
+      };
+    case ProductActionTypes.SET_SNACKBAR_MESSAGE:
+      return {
+        ...state,
+        snackbarMessage: action.payload,
+      };
     default:
       return state;
   }

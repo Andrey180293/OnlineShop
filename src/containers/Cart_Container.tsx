@@ -57,6 +57,7 @@ const mapStateToProps = (state: StateType) => {
 
     byFilter: state.filter.byFilter,
     cartItems: state.cart.items,
+    // @ts-ignore
   };
 };
 

@@ -23,21 +23,6 @@ const Footer: FC<PropsType> = ({ theme }) => {
                   Link 1
                 </a>
               </li>
-              <li>
-                <a className="grey-text text-lighten-3" href="#!">
-                  Link 2
-                </a>
-              </li>
-              <li>
-                <a className="grey-text text-lighten-3" href="#!">
-                  Link 3
-                </a>
-              </li>
-              <li>
-                <a className="grey-text text-lighten-3" href="#!">
-                  Link 4
-                </a>
-              </li>
             </ul>
           </div>
         </div>

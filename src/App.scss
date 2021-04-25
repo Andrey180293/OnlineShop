@@ -12,9 +12,8 @@ html {
     "header header"
     "aside main"
     " footer footer";
-  overflow: hidden;
   min-height: 100vh;
-  overflow: scroll;
+  overflow-x: hidden;
 }
 .App-header {
   left: 0;

@@ -22,7 +22,7 @@ function cartReducer(state = initialization, action: CartAction) {
     case CartActionTypes.ADD_TO_CART:
       return {
         ...state,
-        items: [...state.items, { ...action.payload, inCart: true }],
+        items: [...state.items, { ...action.payload }],
       };
     case CartActionTypes.REMOVE_FROM_CART:
       return {
@@ -35,6 +35,7 @@ function cartReducer(state = initialization, action: CartAction) {
         ...state,
         items: [],
       };
+
     default:
       return state;
   }

@@ -5,6 +5,7 @@ import ProductPage from "../components/Content/ProductPage/ProductPage";
 import Preloader from "../commons/Preloader";
 import { StateType } from "../store/store";
 import { compose } from "redux";
+import { Redirect } from "react-router";
 interface PageProps {
   isLoading: boolean;
   pageIndex: number;
@@ -20,6 +21,8 @@ function Product_Page_Container({
   pageIndex,
 }: PageProps) {
   if (isLoading === false) return <Preloader />;
+  if (!page) return <Redirect to="/" />;
+
   return (
     <ProductPage
       pageIndex={pageIndex}

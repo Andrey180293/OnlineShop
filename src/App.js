@@ -13,7 +13,7 @@ const App = ({ theme, isThemToogle, toggleTheme }) => {
 
   return (
     <>
-      <div className={`row ${theme.contentBg}`} style={{ margin: "0" }}>
+      <div className={`row ${theme.contentBg}`}>
         <Header_Container
           theme={theme}
           isThemToogle={isThemToogle}
@@ -25,7 +25,7 @@ const App = ({ theme, isThemToogle, toggleTheme }) => {
         <DropDown_Container toogleMenu={toogleMenu} isOpenMenu={isOpenMenu} />
         <div
           style={{
-            minHeight: "70vh",
+            minHeight: "100vh",
           }}
         >
           <Route exact path="/" render={() => <Content_Container />} />

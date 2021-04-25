@@ -1,6 +1,5 @@
 import { ProductActionTypes, ProductAction } from "./../../types/Product";
 
-import { db } from "../../servises/firebase";
 import { Dispatch } from "redux";
 
 export const setAllProducts = () => ({
@@ -17,6 +16,10 @@ export const setLoad = (payload: boolean) => ({
   payload,
 });
 
+export const setOpenSnackBar = (payload: boolean) => ({
+  type: ProductActionTypes.SET_OPEN_SNACKBAR,
+  payload,
+});
 export const getProducts = (link: string) => {
   return async (dispatch: Dispatch<ProductAction>) => {
     dispatch({ type: ProductActionTypes.SET_LOAD, payload: false });
@@ -46,14 +49,7 @@ export const setOrder = (item: object) => {
       `https://radiant-ravine-14822.herokuapp.com/api/cart`,
       {
         method: "POST",
-        body: JSON.stringify({
-          ...item,
-          email: "andrey@lba.ru",
-          adress: "lopushanka",
-          name: "Andrey",
-          phoneNumber: 12345678,
-          data: item,
-        }),
+        body: JSON.stringify(item),
         headers: {
           "Content-Type": "application/json",
         },
@@ -64,8 +60,13 @@ export const setOrder = (item: object) => {
     console.log(data.message);
     dispatch({ type: ProductActionTypes.SET_LOAD, payload: true });
 
-    //dispatch(getProducts(item.category));
-    //dispatch(  setSnackBarMessage({ message: data.message, status: data.status })    );
-    // dispatch(setOpenSnackBar(true));
+    dispatch({
+      type: ProductActionTypes.SET_SNACKBAR_MESSAGE,
+      payload: data.message,
+    });
+    dispatch({
+      type: ProductActionTypes.SET_OPEN_SNACKBAR,
+      payload: true,
+    });
   };
 };

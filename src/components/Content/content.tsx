@@ -19,36 +19,33 @@ const Content: FC<PropsType> = ({
 }) => {
   if (isLoading === false) return <Preloader />;
   return (
-    <>
-      {" "}
-      <div
-        className="col s12 m12  l10  "
-        style={{
-          minHeight: "100vh",
-          padding: "30px 20px",
-          marginTop: "40px",
-        }}
-      >
-        <div className="row">
-          {products &&
-            products.map((item: any, key) => {
-              return (
-                <CardItem
-                  key={key}
-                  cartItem={
-                    cartItem.filter(
-                      (el: { _id: string }) => el._id === item._id
-                    )[0]
-                  }
-                  addToCart={addToCart}
-                  item={item}
-                  setProductPage={setProductPage}
-                />
-              );
-            })}
-        </div>
+    <div
+      className="col s12 m12  l10  "
+      style={{
+        minHeight: "100vh",
+        padding: "30px 20px",
+        marginTop: "40px",
+      }}
+    >
+      <div className="row">
+        {products &&
+          products.map((item: any, key) => {
+            return (
+              <CardItem
+                key={key}
+                cartItem={
+                  cartItem.filter(
+                    (el: { _id: string }) => el._id === item._id
+                  )[0]
+                }
+                addToCart={addToCart}
+                item={item}
+                setProductPage={setProductPage}
+              />
+            );
+          })}
       </div>
-    </>
+    </div>
   );
 };
 export default Content;
