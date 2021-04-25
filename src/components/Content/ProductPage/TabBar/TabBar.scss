@@ -14,11 +14,13 @@
 }
 .tabDescription {
   p {
+    width: inherit;
+    min-height: 70vh;
     padding: 5px;
     margin-top: 10px;
     border-radius: 20px;
     font-size: 1.2em;
-    color: rgb(127, 127, 128);
+    color: rgb(0, 0, 0);
   }
   .spanProps {
     font-size: 0.7em;

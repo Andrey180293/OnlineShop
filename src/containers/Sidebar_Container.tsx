@@ -1,15 +1,9 @@
 import "../App.scss";
 
-import {
-  setAllProducts,
-  setPhones,
-  setMotorcycles,
-  setQudrocopters,
-  setRobots,
-} from "../store/action-creators/product";
+import { getProducts } from "../store/action-creators/product";
 import { setFilter } from "../store/action-creators/filter";
 
-import { setActiveSidebarLink, setLoad } from "../store/action-creators/theme";
+import { setActiveSidebarLink } from "../store/action-creators/theme";
 
 import { connect } from "react-redux";
 import Sidebar from "../components/Sidebar/sidebar";
@@ -20,51 +14,35 @@ import { FC } from "react";
 
 type SidebarProps = {
   isActiveSidebarLink: number | false;
-  setLoad: (isLoad: boolean) => void;
   setActiveSidebarLink: (isActiveSidebarLink: number | false) => void;
   setVisiblePopup: (visiblePopup: boolean) => void;
   toogleMenu: (isOpenMenu: boolean) => void;
-  setMotorcycles: () => void;
-  setPhones: () => void;
-  setRobots: () => void;
-  setQudrocopters: () => void;
+  getProducts: (link: string) => void;
   setFilter: () => void;
 };
 
 const Sidebar_Container: FC<SidebarProps> = ({
   isActiveSidebarLink,
-  setPhones,
-  setMotorcycles,
-  setQudrocopters,
-  setRobots,
+  getProducts,
+
   setActiveSidebarLink,
-  setLoad,
   setFilter,
 }) => {
-  const SetPage = async (n: number) => {
-    setLoad(false);
-    await setActionType(n);
-    await setActiveSidebarLink(n);
-    setLoad(true);
+  const SetPage = (n: number, link: string) => {
+    getProducts(link);
+    setActiveSidebarLink(n);
   };
+  const sidebarMenuArray = [
+    { name: "Мотоцикли", link: "motorcycles", number: 0 },
+    { name: "Телефони", link: "phones", number: 1 },
+    { name: "Роботи-пилососи", link: "robots", number: 2 },
+    { name: "Квадрокоптери", link: "qudrocopters", number: 3 },
+  ];
 
-  const setActionType = (n: number) => {
-    if (n === 0) return setMotorcycles();
-    if (n === 1) return setPhones();
-    if (n === 2) return setRobots();
-    if (n === 3) return setQudrocopters();
-  };
-
-  const setProd = (i: number) => {
-    if (i === 0) return "motorcycle";
-    if (i === 1) return "phone";
-    if (i === 2) return "robot";
-    if (i === 3) return "qudrocopters";
-  };
   return (
     <div className="col s12 m0 l2 hide-on-med-and-down">
       <Sidebar
-        setProd={setProd}
+        sidebarMenuArray={sidebarMenuArray}
         SetPage={SetPage}
         isActiveSidebarLink={isActiveSidebarLink}
       />
@@ -76,7 +54,6 @@ const Sidebar_Container: FC<SidebarProps> = ({
 const mapStateToProps = (state: StateType) => {
   return {
     theme: state.theme.theme,
-    isLoad: state.theme.isLoad,
 
     isThemToogle: state.theme.isThemToogle,
 
@@ -89,13 +66,8 @@ const mapStateToProps = (state: StateType) => {
 
 export default compose<StateType>(
   connect(mapStateToProps, {
-    setAllProducts,
-    setPhones,
-    setMotorcycles,
-    setQudrocopters,
-    setRobots,
+    getProducts,
     setActiveSidebarLink,
-    setLoad,
     setFilter,
   })
 )(Sidebar_Container);

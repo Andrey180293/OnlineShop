@@ -8,6 +8,7 @@ export enum CartActionTypes {
   SET_PRICE_MINUS = "SET_PRICE_MINUS",
   ADD_TO_CART = "ADD_TO_CART",
   REMOVE_FROM_CART = "REMOVE_FROM_CART",
+  CLEAR_CART = "CLEAR_CART",
 }
 interface SetPricePlusAction {
   type: CartActionTypes.ADD_REMOVE_AMOUNT;
@@ -25,8 +26,13 @@ interface RemoveFromCartAction {
   type: CartActionTypes.REMOVE_FROM_CART;
   payload: any;
 }
+interface ClearCartAction {
+  type: CartActionTypes.CLEAR_CART;
+}
+
 export type CartAction =
   | SetPricePlusAction
   | SetPriceMinusAction
   | AddToCartAction
+  | ClearCartAction
   | RemoveFromCartAction;

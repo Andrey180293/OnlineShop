@@ -1,6 +1,9 @@
 import "../App.scss";
-import { setProductPage } from "../store/action-creators/product";
-import { setLoad } from "../store/action-creators/theme";
+import {
+  setProductPage,
+  setOpenSnackBar,
+} from "../store/action-creators/product";
+import { useState } from "react";
 
 import { addToCart } from "../store/action-creators/cart";
 
@@ -9,29 +12,38 @@ import Content from "../components/Content/content";
 import Preloader from "../commons/Preloader";
 import { StateType } from "../store/store";
 import { compose } from "redux";
+import SnackBar from "../commons/SnackBar";
 interface ContentProps {
   byFilter: string;
-  isLoad: boolean;
+  snackbarMessage: string;
+  isLoading: boolean;
+  isOpenSnackBar: boolean;
+
   products: [];
   cartItem: [];
-  setLoad: (isLoad: boolean) => void;
+
+  setOpenSnackBar: (isOpen: boolean) => void;
   addToCart: (item: object) => void;
+
   setProductPage: (item: object) => void;
 }
 function Content_Container({
   products,
   cartItem,
   byFilter,
-  isLoad,
+  isLoading,
   setProductPage,
   addToCart,
-  setLoad,
+  snackbarMessage,
+  setOpenSnackBar,
+  isOpenSnackBar,
 }: ContentProps) {
   const sortBy = (products: Array<object>, byFilter: string) => {
     switch (byFilter) {
       case "all":
         return (
-          products && products.sort((a: any, b: any) => (a.id > b.id ? 1 : -1))
+          products &&
+          products.sort((a: any, b: any) => (a._id > b._id ? 1 : -1))
         );
 
       case "price_low":
@@ -46,23 +58,27 @@ function Content_Container({
         return products;
     }
   };
-  //console.log(isLoad);
 
   const setPage = (item: object) => {
-    setLoad(false);
     setProductPage(item);
-    setLoad(true);
   };
 
-  if (isLoad === false) return <Preloader />;
+  if (isLoading === false) return <Preloader />;
   return (
-    <Content
-      setProductPage={setPage}
-      addToCart={addToCart}
-      cartItem={cartItem}
-      // @ts-ignore
-      products={sortBy(products, byFilter)}
-    />
+    <>
+      {" "}
+      {isOpenSnackBar && (
+        <SnackBar message={snackbarMessage} setOpenSnackBar={setOpenSnackBar} />
+      )}
+      <Content
+        isLoading={isLoading}
+        setProductPage={setPage}
+        addToCart={addToCart}
+        cartItem={cartItem}
+        // @ts-ignore
+        products={sortBy(products, byFilter)}
+      />
+    </>
   );
 }
 
@@ -70,19 +86,25 @@ const mapStateToProps = (state: StateType) => {
   return {
     theme: state.theme.theme,
     isThemToogle: state.theme.isThemToogle,
-    isLoad: state.theme.isLoad,
     byFilter: state.filter.byFilter,
 
     cartItem: state.cart.items,
     // @ts-ignore
     products: state.product.product,
+    // @ts-ignore
+    isLoading: state.product.isLoading,
+    // @ts-ignore
+    snackbarMessage: state.product.snackbarMessage,
+    // @ts-ignore
+
+    isOpenSnackBar: state.product.isOpenSnackBar,
   };
 };
 
 export default compose<StateType>(
   connect(mapStateToProps, {
     setProductPage,
-    setLoad,
     addToCart,
+    setOpenSnackBar,
   })
 )(Content_Container);

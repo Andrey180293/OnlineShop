@@ -1,19 +1,19 @@
 export interface ProductState {
   product: Array<object>;
-  phones: any;
-  motorcycles: any;
-  quadrocopters: any;
-  robots: any;
+
+  isLoading: boolean;
   page: any;
   pageIndex: number;
+  snackbarMessage: string | null;
+  isOpenSnackBar: boolean;
 }
 export enum ProductActionTypes {
   SET_ALL_PRODUCT = "SET_ALL_PRODUCT",
   SET_PRODUCT_PAGE = "SET_PRODUCT_PAGE",
-  SET_PHONE = "SET_PHONE",
-  SET_MOTORCYCLES = "SET_MOTORCYCLES",
-  SET_QUDROCOPTERS = "SET_QUDROCOPTERS",
-  SET_ROBOTS = "SET_ROBOTS",
+  SET_PRODUCTS = "SET_PRODUCTS",
+  SET_LOAD = "SET_LOAD",
+  SET_SNACKBAR_MESSAGE = "SET_SNACKBAR_MESSAGE",
+  SET_OPEN_SNACKBAR = "SET_OPEN_SNACKBAR",
 }
 interface SetAllProductAction {
   type: ProductActionTypes.SET_ALL_PRODUCT;
@@ -22,29 +22,28 @@ interface SetProductPageAction {
   type: ProductActionTypes.SET_PRODUCT_PAGE;
   payload: any;
 }
-interface SetPhoneAction {
-  type: ProductActionTypes.SET_PHONE;
+interface SetProductsAction {
+  type: ProductActionTypes.SET_PRODUCTS;
   payload: any;
+}
+interface SetLoadAction {
+  type: ProductActionTypes.SET_LOAD;
+  payload: boolean;
+}
+interface snackBarMessageAction {
+  type: ProductActionTypes.SET_SNACKBAR_MESSAGE;
+  payload: string;
 }
 
-interface SetMotorcyclesAction {
-  type: ProductActionTypes.SET_MOTORCYCLES;
-  payload: any;
-}
-
-interface SetQadricoptersAction {
-  type: ProductActionTypes.SET_QUDROCOPTERS;
-  payload: any;
-}
-interface SetRobotsAction {
-  type: ProductActionTypes.SET_ROBOTS;
-  payload: any;
+interface setOpenSnackBarAction {
+  type: ProductActionTypes.SET_OPEN_SNACKBAR;
+  payload: boolean;
 }
 
 export type ProductAction =
   | SetAllProductAction
   | SetProductPageAction
-  | SetPhoneAction
-  | SetMotorcyclesAction
-  | SetQadricoptersAction
-  | SetRobotsAction;
+  | SetProductsAction
+  | SetLoadAction
+  | snackBarMessageAction
+  | setOpenSnackBarAction;

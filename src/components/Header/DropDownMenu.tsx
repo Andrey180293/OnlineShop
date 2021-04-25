@@ -7,7 +7,7 @@ type PropsType = {
   isdropDown: boolean;
   isOpenMenu: boolean;
   toogleMenu: (item: boolean) => void;
-  closeDropMenu: (n: number | null) => void;
+  closeDropMenu: (n: number | null, link: string) => void;
   togleDropDown: (item: boolean) => void;
 };
 
@@ -29,28 +29,34 @@ const DropDownMenu: FC<PropsType> = ({
         <ul className={`dropdown_content ${!isdropDown && "hide"}`}>
           <li>
             <NavLink
-              to={`/products/motorcycle`}
-              onClick={() => closeDropMenu(0)}
+              to={`/products/motorcycles`}
+              onClick={() => closeDropMenu(0, "motorcycles")}
             >
               Motorcycles
             </NavLink>
           </li>
           <li>
-            <NavLink to={`/products/phone`} onClick={() => closeDropMenu(1)}>
+            <NavLink
+              to={`/products/phones`}
+              onClick={() => closeDropMenu(1, "phones")}
+            >
               Phone
             </NavLink>
           </li>
           <li>
-            <NavLink to={`/products/robot`} onClick={() => closeDropMenu(2)}>
+            <NavLink
+              to={`/products/robots`}
+              onClick={() => closeDropMenu(2, "robots")}
+            >
               Robot
             </NavLink>
           </li>
           <li>
             <NavLink
               to={`/products/qudrocopters`}
-              onClick={() => closeDropMenu(3)}
+              onClick={() => closeDropMenu(3, "qudrocopters")}
             >
-              keadro
+              Qudrocopters
             </NavLink>
           </li>
         </ul>

@@ -5,8 +5,9 @@ import ProductPage from "../components/Content/ProductPage/ProductPage";
 import Preloader from "../commons/Preloader";
 import { StateType } from "../store/store";
 import { compose } from "redux";
+import { Redirect } from "react-router";
 interface PageProps {
-  isLoad: boolean;
+  isLoading: boolean;
   pageIndex: number;
   page: any;
   cartItem: Array<object>;
@@ -16,16 +17,18 @@ function Product_Page_Container({
   page,
   cartItem,
   addToCart,
-  isLoad,
+  isLoading,
   pageIndex,
 }: PageProps) {
-  if (isLoad === false) return <Preloader />;
+  if (isLoading === false) return <Preloader />;
+  if (!page) return <Redirect to="/" />;
+
   return (
     <ProductPage
       pageIndex={pageIndex}
       addToCart={addToCart}
       page={page[0]}
-      cartItem={cartItem.filter((el: any) => el.id === page[0].id)[0]}
+      cartItem={cartItem.filter((el: any) => el._id === page[0]._id)[0]}
     />
   );
 }
@@ -38,9 +41,9 @@ const mapStateToProps = (state: StateType) => {
     page: state.product.page,
     // @ts-ignore
     pageIndex: state.product.pageIndex,
-
+    // @ts-ignore
+    isLoading: state.product.isLoading,
     cartItem: state.cart.items,
-    isLoad: state.theme.isLoad,
   };
 };
 

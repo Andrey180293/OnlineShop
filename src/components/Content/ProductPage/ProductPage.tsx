@@ -20,7 +20,12 @@ const ProductPage: FC<PropsType> = ({
   addToCart,
 }) => {
   return (
-    <div className="ProductPage col s12 m12  l10 ">
+    <div
+      className="ProductPage col s12 m12  l10 "
+      style={{
+        marginTop: "80px",
+      }}
+    >
       <div className="page-container ">
         <ProductPage_left_content page={page} />
 

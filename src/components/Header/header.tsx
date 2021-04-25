@@ -1,6 +1,7 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import "../Header/header.scss";
 import { NavLink } from "react-router-dom";
+
 type PropsType = {
   theme: {
     headFootBg: string;
@@ -15,8 +16,8 @@ type PropsType = {
   SetPage: () => void;
 };
 const Header: FC<PropsType> = ({
-  theme,
   isThemToogle,
+  theme,
   cartItem,
   isOpenMenu,
   toggleTheme,

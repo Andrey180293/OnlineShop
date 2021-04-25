@@ -1,6 +1,5 @@
 import { ProductActionTypes, ProductAction } from "./../../types/Product";
 
-import { db, auth } from "../../servises/firebase";
 import { Dispatch } from "redux";
 
 export const setAllProducts = () => ({
@@ -12,71 +11,62 @@ export const setProductPage = (payload: ProductAction) => ({
   payload,
 });
 
-export const setPhones = () => {
+export const setLoad = (payload: boolean) => ({
+  type: ProductActionTypes.SET_LOAD,
+  payload,
+});
+
+export const setOpenSnackBar = (payload: boolean) => ({
+  type: ProductActionTypes.SET_OPEN_SNACKBAR,
+  payload,
+});
+export const getProducts = (link: string) => {
   return async (dispatch: Dispatch<ProductAction>) => {
-    await db
-      .collection("phones")
-      .get()
-      .then((querySnapshot) => {
-        let items: any = [];
-        querySnapshot.forEach((doc) => {
-          items.push(doc.data());
-        });
-        dispatch({ type: ProductActionTypes.SET_PHONE, payload: [...items] });
-      });
+    dispatch({ type: ProductActionTypes.SET_LOAD, payload: false });
+
+    let response = await fetch(
+      `https://radiant-ravine-14822.herokuapp.com/api/products/${link}`,
+      {
+        //  params:'link',
+      }
+    );
+    let data = await response.json();
+
+    dispatch({
+      type: ProductActionTypes.SET_PRODUCTS,
+      payload: data.data,
+    });
+
+    dispatch({ type: ProductActionTypes.SET_LOAD, payload: true });
+    return data;
   };
 };
 
-export const setMotorcycles = () => {
+export const setOrder = (item: object) => {
   return async (dispatch: Dispatch<ProductAction>) => {
-    await db
-      .collection("motorcycles")
-      .get()
-      .then((querySnapshot) => {
-        let items: any = [];
-        querySnapshot.forEach((doc) => {
-          items.push(doc.data());
-        });
-        dispatch({
-          type: ProductActionTypes.SET_MOTORCYCLES,
-          payload: [...items],
-        });
-      });
-  };
-};
+    dispatch({ type: ProductActionTypes.SET_LOAD, payload: false });
+    let response = await fetch(
+      `https://radiant-ravine-14822.herokuapp.com/api/cart`,
+      {
+        method: "POST",
+        body: JSON.stringify(item),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
-export const setRobots = () => {
-  return async (dispatch: Dispatch<ProductAction>) => {
-    await db
-      .collection("robots")
-      .get()
-      .then((querySnapshot) => {
-        let items: any = [];
-        querySnapshot.forEach((doc) => {
-          items.push(doc.data());
-        });
-        dispatch({
-          type: ProductActionTypes.SET_ROBOTS,
-          payload: [...items],
-        });
-      });
-  };
-};
+    let data = await response.json();
+    console.log(data.message);
+    dispatch({ type: ProductActionTypes.SET_LOAD, payload: true });
 
-export const setQudrocopters = () => {
-  return async (dispatch: Dispatch<ProductAction>) => {
-    await db
-      .collection("qudrocopters")
-      .get()
-      .then((querySnapshot) => {
-        let items: any = [];
-        querySnapshot.forEach((doc) => {
-          items.push(doc.data());
-        });
-        dispatch({
-          type: ProductActionTypes.SET_QUDROCOPTERS,
-          payload: [...items],
-        });
-      });
+    dispatch({
+      type: ProductActionTypes.SET_SNACKBAR_MESSAGE,
+      payload: data.message,
+    });
+    dispatch({
+      type: ProductActionTypes.SET_OPEN_SNACKBAR,
+      payload: true,
+    });
   };
 };

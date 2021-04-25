@@ -5,7 +5,6 @@ import RobotsProperties from "./RobotsProperties";
 import PhonesProperties from "./PhonesProperties";
 
 const TabDescription = ({ activeTab, page, pageIndex }) => {
-  console.log(pageIndex);
   return (
     <>
       <div className={`tabDescription ${activeTab === 1 ? "show" : "hide"} `}>

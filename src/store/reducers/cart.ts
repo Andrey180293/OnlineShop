@@ -11,7 +11,7 @@ function cartReducer(state = initialization, action: CartAction) {
       return {
         ...state,
         items: [
-          ...state.items.filter((el) => el.id !== action.payload.id),
+          ...state.items.filter((el) => el._id !== action.payload._id),
           action.payload,
         ],
       };
@@ -22,13 +22,20 @@ function cartReducer(state = initialization, action: CartAction) {
     case CartActionTypes.ADD_TO_CART:
       return {
         ...state,
-        items: [...state.items, { ...action.payload, inCart: true }],
+        items: [...state.items, { ...action.payload }],
       };
     case CartActionTypes.REMOVE_FROM_CART:
       return {
         ...state,
-        items: [...state.items.filter((el) => el.id !== action.payload.id)],
+        items: [...state.items.filter((el) => el._id !== action.payload._id)],
       };
+
+    case CartActionTypes.CLEAR_CART:
+      return {
+        ...state,
+        items: [],
+      };
+
     default:
       return state;
   }
